@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.myapplication2.fragments.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_createTrainFragment"
+            app:destination="@id/createTrainFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_myTrainingsFragment"
+            app:destination="@id/myTrainingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createTrainFragment"
+        android:name="com.example.myapplication2.fragments.CreateTrainFragment"
+        android:label="fragment_create_train"
+        tools:layout="@layout/fragment_create_train" >
+        <action
+            android:id="@+id/action_createTrainFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="com.example.myapplication2.fragments.ResultsFragment"
+        android:label="fragment_results"
+        tools:layout="@layout/fragment_results" >
+        <action
+            android:id="@+id/action_resultsFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_resultsFragment_to_resultsDetailedFragment"
+            app:destination="@id/resultsDetailedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myTrainingsFragment"
+        android:name="com.example.myapplication2.fragments.MyTrainingsFragment"
+        android:label="fragment_my_trainings2"
+        tools:layout="@layout/fragment_my_trainings2" >
+        <action
+            android:id="@+id/action_myTrainingsFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_myTrainingsFragment_to_detailedFragment"
+            app:destination="@id/detailedFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.myapplication2.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/detailedFragment"
+        android:name="com.example.myapplication2.fragments.DetailedFragment"
+        android:label="fragment_detailed"
+        tools:layout="@layout/fragment_detailed" >
+        <argument
+            android:name="args"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_detailedFragment_to_trainFragment"
+            app:destination="@id/trainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainFragment"
+        android:name="com.example.myapplication2.fragments.TrainFragment"
+        android:label="fragment_train"
+        tools:layout="@layout/fragment_train" >
+        <argument
+            android:name="NameOfList"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_trainFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultsDetailedFragment"
+        android:name="com.example.myapplication2.fragments.ResultsDetailedFragment"
+        android:label="fragment_results_detailed"
+        tools:layout="@layout/fragment_results_detailed" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.myapplication2.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+</navigation>

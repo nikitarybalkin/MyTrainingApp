@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_rDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/line1"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="18dp" />
+
+    <TextView
+        android:id="@+id/tv_rNameOfTrain"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="@string/name_of_train"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@id/tv_rDate"
+        android:layout_marginRight="35dp"
+        app:layout_constraintRight_toLeftOf="@id/tv_rQuantityOfExes"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="20dp" />
+
+    <TextView
+        android:id="@+id/tv_rQuantityOfExes"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="@string/quantity_of_exercises"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="@id/tv_rDate"
+        android:layout_marginRight="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="20dp" />
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="7dp"
+        android:layout_height="110dp"
+        app:layout_constraintRight_toLeftOf="@+id/tv_rNameOfTrain"
+        android:layout_marginRight="26dp"
+        app:layout_constraintTop_toTopOf="@id/line2"
+        android:background="@color/turquoise"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="0dp" />
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="@color/turquoise"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <View
+        android:id="@+id/line4"
+        android:layout_width="7dp"
+        android:layout_height="110dp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_rNameOfTrain"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="7dp"
+        app:layout_constraintTop_toTopOf="@id/line2"
+        android:background="@color/turquoise"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <View
+        android:id="@+id/line3"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/line1"
+        android:background="@color/turquoise"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="110dp" />
+
+    <TextView
+        android:id="@+id/tv_rDate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="28dp"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_rDate" />
+
+    <TextView
+        android:id="@+id/tv_rNameOfTrain2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintRight_toRightOf="@+id/tv_rNameOfTrain"
+        app:layout_constraintLeft_toLeftOf="@id/tv_rNameOfTrain"
+        app:layout_constraintTop_toBottomOf="@id/tv_rDate" />
+
+    <TextView
+        android:id="@+id/tv_rQuantityOfExes2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_rQuantityOfExes"
+        app:layout_constraintLeft_toLeftOf="@id/tv_rQuantityOfExes"
+        app:layout_constraintTop_toBottomOf="@id/tv_rDate" />
+
+    <View
+        android:id="@+id/RView"
+        android:layout_width="match_parent"
+        android:layout_height="117dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

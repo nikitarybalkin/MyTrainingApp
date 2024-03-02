@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/list_Item"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_marginEnd="70dp"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="15dp"
+        android:id="@+id/tv_NameOfTrainField"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="20dp" />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_marginEnd="70dp"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_NameOfTrainField"
+        android:layout_marginTop="15dp"
+        android:id="@+id/tv_CountOfExercisesField"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="20dp" />
+
+    <Button
+        android:id="@+id/b_Delete"
+        android:layout_width="37dp"
+        android:layout_height="43dp"
+        android:layout_marginRight="1dp"
+        app:layout_constraintLeft_toRightOf="@+id/tv_CountOfExercisesField"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tv_CountOfExercisesField"
+        app:layout_constraintTop_toTopOf="@+id/tv_CountOfExercisesField" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
