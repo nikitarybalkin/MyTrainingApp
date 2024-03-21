@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress NavigationFile -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -63,10 +64,7 @@
         android:name="com.example.myapplication2.fragments.DetailedFragment"
         android:label="fragment_detailed"
         tools:layout="@layout/fragment_detailed" >
-        <argument
-            android:name="args"
-            app:argType="integer"
-            android:defaultValue="0" />
+
         <action
             android:id="@+id/action_detailedFragment_to_trainFragment"
             app:destination="@id/trainFragment" />
@@ -76,10 +74,6 @@
         android:name="com.example.myapplication2.fragments.TrainFragment"
         android:label="fragment_train"
         tools:layout="@layout/fragment_train" >
-        <argument
-            android:name="NameOfList"
-            app:argType="integer"
-            android:defaultValue="0" />
         <action
             android:id="@+id/action_trainFragment_to_startFragment"
             app:destination="@id/startFragment" />

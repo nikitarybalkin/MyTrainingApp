@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.example.myapplication2.ResultsConverter
 import com.example.myapplication2.TrainsConverter
 
-@Database(entities = [TrainingEntity::class, ResultsEntity::class], version = 6)
+@Database(entities = [TrainingEntity::class, ResultsEntity::class], version = 6, exportSchema = false)
 @TypeConverters(
     TrainsConverter::class,
 )

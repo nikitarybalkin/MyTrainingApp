@@ -1,6 +1,7 @@
 package com.example.myapplication2.fragments
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,9 +19,12 @@ import com.example.myapplication2.databinding.FragmentTrainBinding
 import com.example.myapplication2.db.App
 import com.example.myapplication2.db.ResultsEntity
 import com.example.myapplication2.db.TrainingEntity
+import com.example.myapplication2.viewModels.DetailedViewModel
 import com.example.myapplication2.viewModels.TrainViewModel
+import com.example.myapplication2.viewModels.ViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import javax.inject.Inject
 
 class TrainFragment : Fragment() {
 
@@ -28,7 +32,14 @@ class TrainFragment : Fragment() {
         fun newInstance() = TrainFragment()
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[TrainViewModel::class.java]
+    }
     private lateinit var binding: FragmentTrainBinding
+    /*
+
     private val viewModel: TrainViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -39,6 +50,8 @@ class TrainFragment : Fragment() {
         }
     }
 
+     */
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,9 +60,14 @@ class TrainFragment : Fragment() {
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        (requireActivity().applicationContext as App).component.inject(this)
+        super.onAttach(context)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.timer()
+        viewModel.startTimer()
         viewModel.getAll()
         var resList1: List<TrainingEntity> = emptyList()
         var bundle = arguments?.getInt("NameOfList")
@@ -100,6 +118,7 @@ class TrainFragment : Fragment() {
                 listOfQuantityOfExes.add(listOfQuantityInOne.toString().replace(",", " |"))
                 listOfWeight.add(listOfWeightInOne.toString().replace(",", " |"))
                 listOfQuantityOfSets.add(quantityOfSets.toString())
+                viewModel.stopTimer()
                 viewModel.insert(
                     ResultsEntity(
                         exercises = resList1[bundle].exercises!!,

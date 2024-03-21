@@ -9,8 +9,9 @@ import com.example.myapplication2.db.TrainingEntity
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailedViewModel(private val table: ExerciseDao) : ViewModel() {
+class DetailedViewModel @Inject constructor(private val table: ExerciseDao) : ViewModel() {
     var listOfExers: Flow<List<TrainingEntity>> = MutableStateFlow(emptyList())
 
     fun getList() {

@@ -1,6 +1,7 @@
 package com.example.myapplication2.fragments
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -16,7 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication2.R
 import com.example.myapplication2.databinding.FragmentDetailedBinding
 import com.example.myapplication2.db.App
+import com.example.myapplication2.viewModels.CreateTrainViewModel
 import com.example.myapplication2.viewModels.DetailedViewModel
+import com.example.myapplication2.viewModels.ViewModelFactory
+import javax.inject.Inject
 
 class DetailedFragment : Fragment() {
 
@@ -25,6 +29,11 @@ class DetailedFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentDetailedBinding
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[DetailedViewModel::class.java]
+    }/*
     private val viewModel: DetailedViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -32,7 +41,7 @@ class DetailedFragment : Fragment() {
                 return DetailedViewModel(trainingDAO) as T
             }
         }
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +49,11 @@ class DetailedFragment : Fragment() {
     ): View? {
         binding = FragmentDetailedBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        (requireActivity().applicationContext as App).component.inject(this)
+        super.onAttach(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

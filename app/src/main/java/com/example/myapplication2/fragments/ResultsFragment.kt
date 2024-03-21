@@ -1,6 +1,7 @@
 package com.example.myapplication2.fragments
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -19,8 +20,11 @@ import com.example.myapplication2.R
 import com.example.myapplication2.databinding.FragmentResultsBinding
 import com.example.myapplication2.db.App
 import com.example.myapplication2.viewModels.CreateTrainViewModel
+import com.example.myapplication2.viewModels.DetailedViewModel
 import com.example.myapplication2.viewModels.ResultsViewModel
+import com.example.myapplication2.viewModels.ViewModelFactory
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 class ResultsFragment : Fragment() {
 
@@ -28,6 +32,12 @@ class ResultsFragment : Fragment() {
         fun newInstance() = ResultsFragment()
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[ResultsViewModel::class.java]
+    }
+    /*
     private val viewModel: ResultsViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -36,7 +46,13 @@ class ResultsFragment : Fragment() {
             }
         }
     }
+
+     */
     private lateinit var binding: FragmentResultsBinding
+    override fun onAttach(context: Context) {
+        (requireActivity().applicationContext as App).component.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

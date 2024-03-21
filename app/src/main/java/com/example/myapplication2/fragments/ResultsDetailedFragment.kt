@@ -1,6 +1,7 @@
 package com.example.myapplication2.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,14 +14,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication2.databinding.FragmentResultsDetailedBinding
 import com.example.myapplication2.db.App
+import com.example.myapplication2.viewModels.DetailedViewModel
 import com.example.myapplication2.viewModels.ResultsDetailedViewModel
+import com.example.myapplication2.viewModels.ViewModelFactory
+import javax.inject.Inject
 
 class ResultsDetailedFragment : Fragment() {
 
     companion object {
         fun newInstance() = ResultsDetailedFragment()
     }
-
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[ResultsDetailedViewModel::class.java]
+    }
+/*
     private val viewModel: ResultsDetailedViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -29,6 +38,8 @@ class ResultsDetailedFragment : Fragment() {
             }
         }
     }
+
+ */
     private lateinit var binding: FragmentResultsDetailedBinding
 
     override fun onCreateView(
@@ -39,6 +50,12 @@ class ResultsDetailedFragment : Fragment() {
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        (requireActivity().applicationContext as App).component.inject(this)
+        super.onAttach(context)
+    }
+
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

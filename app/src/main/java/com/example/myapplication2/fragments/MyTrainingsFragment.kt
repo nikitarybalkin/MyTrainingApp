@@ -1,6 +1,7 @@
 package com.example.myapplication2.fragments
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,18 +16,31 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication2.R
+import com.example.myapplication2.databinding.FragmentCreateTrainBinding
 import com.example.myapplication2.databinding.FragmentMyTrainings2Binding
 import com.example.myapplication2.db.App
 import com.example.myapplication2.db.TrainingEntity
+import com.example.myapplication2.viewModels.CreateTrainViewModel
+import com.example.myapplication2.viewModels.DetailedViewModel
 import com.example.myapplication2.viewModels.MyTrainingsViewModel
+import com.example.myapplication2.viewModels.ViewModelFactory
+import javax.inject.Inject
 
 class MyTrainingsFragment : Fragment() {
 
-    companion object {
+    /*companion object {
         fun newInstance() = MyTrainingsFragment()
     }
 
-    private val viewModel: MyTrainingsViewModel by viewModels {
+     */
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private lateinit var binding: FragmentMyTrainings2Binding
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[MyTrainingsViewModel::class.java]
+    }
+    /*private val viewModel: MyTrainingsViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val trainingDAO = (requireActivity().application as App).db.exerciseDao()
@@ -34,7 +48,9 @@ class MyTrainingsFragment : Fragment() {
             }
         }
     }
-    private lateinit var binding: FragmentMyTrainings2Binding
+
+     */
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +58,10 @@ class MyTrainingsFragment : Fragment() {
     ): View? {
         binding = FragmentMyTrainings2Binding.inflate(inflater, container, false)
         return binding.root
+    }
+    override fun onAttach(context: Context) {
+        (requireActivity().applicationContext as App).component.inject(this)
+        super.onAttach(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -11,13 +11,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MyTrainingsViewModel(private val trainingDao: ExerciseDao) : ViewModel() {
+class MyTrainingsViewModel @Inject constructor(
+    private val trainingDao: ExerciseDao
+) : ViewModel() {
     var _list: Flow<List<TrainingEntity>>? = MutableStateFlow(emptyList())
-    //val list = _list
 
     fun getAll() {
-
+        Log.d("MyTrainings", "nameOfVM=$this")
         viewModelScope.launch {
 
             _list = trainingDao.getAll()

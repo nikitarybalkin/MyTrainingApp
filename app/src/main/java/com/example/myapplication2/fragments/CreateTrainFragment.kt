@@ -1,27 +1,20 @@
 package com.example.myapplication2.fragments
 
-import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.myapplication2.Exercise
 import com.example.myapplication2.R
 import com.example.myapplication2.databinding.FragmentCreateTrainBinding
-import com.example.myapplication2.databinding.FragmentStartBinding
 import com.example.myapplication2.db.App
 import com.example.myapplication2.db.TrainingEntity
 import com.example.myapplication2.viewModels.CreateTrainViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import com.example.myapplication2.viewModels.ViewModelFactory
+import javax.inject.Inject
 
 class CreateTrainFragment : Fragment() {
 
@@ -29,28 +22,45 @@ class CreateTrainFragment : Fragment() {
         fun newInstance() = CreateTrainFragment()
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
     private lateinit var binding: FragmentCreateTrainBinding
-    private val viewModel: CreateTrainViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                val trainingDAO = (requireActivity().application as App).db.exerciseDao()
-                return CreateTrainViewModel(trainingDAO) as T
-            }
-        }
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[CreateTrainViewModel::class.java]
     }
+    /*private val component by lazy {
+        ( as App).component.
+    }
+
+     */
+
+    /*override fun onAttach(context: Context) {
+        (applicationContext as App).appComponent.inject(this)
+        super.onAttach(context)
+    }
+
+     */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //component.inject(this)
         binding = FragmentCreateTrainBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        (requireActivity().applicationContext as App).component.inject(this)
+        super.onAttach(context)
+    }
 
-    @SuppressLint("SuspiciousIndentation")
+    //@SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
+        //(this as App).appComponent.inject(this)
+        //
         var lExes = mutableListOf<String>()
         var nameOfTrain: String? = context?.getString(R.string.no_name)
         binding.b1.text = context?.getString(R.string.next_exercise)
@@ -78,19 +88,6 @@ class CreateTrainFragment : Fragment() {
             findNavController().navigate(R.id.action_createTrainFragment_to_startFragment)
 
         }
-
-        /*viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            var a : List<TrainingEntity>
-            viewModel.list.collect{
-                a = it
-            }
-
-        }
-
-
-
-
-         */
     }
 
 }

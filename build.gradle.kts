@@ -3,6 +3,10 @@
 plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.kotlinAndroid) apply false
-    kotlin("kapt") version "1.9.22"
+    //alias(libs.plugins.kapt) apply false
+    kotlin("kapt") version "1.9.23"
+    alias(libs.plugins.ksp) apply false
+
+
 }
 true // Needed to make the Suppress annotation work for the plugins block

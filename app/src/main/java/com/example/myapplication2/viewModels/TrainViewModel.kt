@@ -10,11 +10,15 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import java.util.Timer
+import javax.inject.Inject
+import kotlin.concurrent.schedule
 
-class TrainViewModel(var resultsDao: ResultsDao, var trainingDao: ExerciseDao) : ViewModel() {
+class TrainViewModel @Inject constructor(var resultsDao: ResultsDao, var trainingDao: ExerciseDao) : ViewModel() {
     var resList : Flow<List<TrainingEntity>> = MutableStateFlow(emptyList())
     var exesList : Flow<List<String>> = MutableStateFlow(emptyList())
     var time: Int = 0
+    var timer = Timer()
     fun getAll() {
 
         viewModelScope.launch {
@@ -33,13 +37,21 @@ class TrainViewModel(var resultsDao: ResultsDao, var trainingDao: ExerciseDao) :
 
     }
 
-    fun timer() {
+    fun startTimer() {
+        timer.schedule(delay = 0, period = 1000) {
+            time++
+        }
 
-        viewModelScope.launch{
+        /*viewModelScope.launch{
             delay(1000)
             time++
         }
 
+         */
+
     }
+    fun stopTimer() {
+        timer.cancel()
+        }
 
 }
