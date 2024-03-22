@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.TrainFragment">
+    tools:context=".presentation.fragments.TrainFragment">
 
     <TextView
         android:id="@+id/tv_NameOfTrain"
@@ -46,6 +46,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/quantity_of_repeats"
+        android:gravity="center"
         app:layout_constraintLeft_toLeftOf="@id/et_QuantityOfRepeats"
         app:layout_constraintRight_toRightOf="@id/et_QuantityOfRepeats"
         app:layout_constraintTop_toBottomOf="@id/tv_NameOfExercise"
@@ -122,4 +123,5 @@
         android:layout_marginTop="30dp"
         tools:layout_editor_absoluteX="173dp"
         tools:layout_editor_absoluteY="171dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

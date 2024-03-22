@@ -24,6 +24,8 @@
     <string name="some_fields_empty">Some fields are empty</string>
     <string name="training_is_over">The training is over</string>
     <string name="time">Time</string>
+    <string name="greeting">Today is perfect day to work out</string>
+    <string name="last_training">Your last training</string>
 
 
 </resources>

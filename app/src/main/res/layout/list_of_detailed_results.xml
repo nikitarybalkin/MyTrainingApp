@@ -115,20 +115,24 @@
 
         app:layout_constraintLeft_toLeftOf="@id/tv_rdNameOfExercise2"
         app:layout_constraintTop_toTopOf="@id/tv_rdQuantityOfSets" />
+
     <TextView
         android:id="@+id/tv_rdTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/archivo_semibold"
         android:text="@string/time"
-        android:layout_marginTop="20dp"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@id/tv_rdWeight"
         app:layout_constraintTop_toBottomOf="@id/tv_rdWeight" />
+
     <TextView
         android:id="@+id/tv_rdTime2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/archivo_semibold"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@id/tv_rdNameOfExercise2"
         app:layout_constraintTop_toTopOf="@id/tv_rdTime" />
 </androidx.constraintlayout.widget.ConstraintLayout>

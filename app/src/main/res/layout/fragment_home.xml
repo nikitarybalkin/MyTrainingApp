@@ -1,13 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.fragments.HomeFragment">
+
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/tvGreeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/greeting"
+        android:textSize="35dp"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+         />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_ResultOfTrain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_training"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGreeting"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_hDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date"
+        app:layout_constraintTop_toBottomOf="@id/tv_ResultOfTrain"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="40dp"
+         />
+
+    <TextView
+        android:id="@+id/tv_hNameOfTrain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name_of_train"
+        app:layout_constraintTop_toTopOf="@id/tv_hDate"
+        app:layout_constraintLeft_toRightOf="@id/tv_hDate"
+        android:layout_marginLeft="80dp"
+         />
+
+    <TextView
+        android:id="@+id/tv_hTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time"
+        app:layout_constraintTop_toTopOf="@id/tv_hDate"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="60dp"
+         />
+
+    <TextView
+        android:id="@+id/tv_hDate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintTop_toBottomOf="@id/tv_hDate"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/tv_hDate"
+        app:layout_constraintRight_toRightOf="@id/tv_hDate"
+         />
+
+    <TextView
+        android:id="@+id/tv_hNameOfTrain2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintTop_toBottomOf="@id/tv_hNameOfTrain"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/tv_hNameOfTrain"
+        app:layout_constraintRight_toRightOf="@id/tv_hNameOfTrain"
+         />
+
+    <ImageView
+        android:id="@+id/table"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/table_frame"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_ResultOfTrain"
+        />
+
+    <TextView
+        android:id="@+id/tv_hTime2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tv_hTime"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/tv_hTime"
+        app:layout_constraintRight_toRightOf="@id/tv_hTime"
+        android:text=""
+         />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="300dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="358dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

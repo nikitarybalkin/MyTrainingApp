@@ -24,4 +24,8 @@
     <string name="some_fields_empty">Некоторые поля пустые</string>
     <string name="training_is_over">Тренировка окончена</string>
     <string name="time">Время</string>
+    <string name="greeting">Сегодня прекрасный день, чтобы потренироваться</string>
+    <string name="last_training">Твоя последняя тренировка</string>
+
+
 </resources>

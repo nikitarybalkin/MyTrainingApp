@@ -25,15 +25,15 @@
         android:gravity="center"
         app:layout_constraintTop_toTopOf="@id/tv_rDate"
         android:layout_marginRight="35dp"
-        app:layout_constraintRight_toLeftOf="@id/tv_rQuantityOfExes"
+        app:layout_constraintRight_toLeftOf="@id/tv_rTime"
         tools:layout_editor_absoluteX="121dp"
         tools:layout_editor_absoluteY="20dp" />
 
     <TextView
-        android:id="@+id/tv_rQuantityOfExes"
+        android:id="@+id/tv_rTime"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:text="@string/quantity_of_exercises"
+        android:text="@string/time"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="@id/tv_rDate"
         android:layout_marginRight="10dp"
@@ -102,12 +102,12 @@
         app:layout_constraintTop_toBottomOf="@id/tv_rDate" />
 
     <TextView
-        android:id="@+id/tv_rQuantityOfExes2"
+        android:id="@+id/tv_rTime2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_rQuantityOfExes"
-        app:layout_constraintLeft_toLeftOf="@id/tv_rQuantityOfExes"
+        app:layout_constraintEnd_toEndOf="@+id/tv_rTime"
+        app:layout_constraintLeft_toLeftOf="@id/tv_rTime"
         app:layout_constraintTop_toBottomOf="@id/tv_rDate" />
 
     <View
