@@ -26,6 +26,11 @@
     <string name="time">Time</string>
     <string name="greeting">Today is perfect day to work out</string>
     <string name="last_training">Your last training</string>
+    <string name="sec">sec.</string>
+    <string name="min">min.</string>
+    <string name="hour">hour.</string>
+
+
 
 
 </resources>

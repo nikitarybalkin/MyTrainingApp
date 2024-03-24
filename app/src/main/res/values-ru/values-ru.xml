@@ -26,6 +26,8 @@
     <string name="time">Время</string>
     <string name="greeting">Сегодня прекрасный день, чтобы потренироваться</string>
     <string name="last_training">Твоя последняя тренировка</string>
-
+    <string name="sec">сек.</string>
+    <string name="min">мин..</string>
+    <string name="hour">час.</string>
 
 </resources>

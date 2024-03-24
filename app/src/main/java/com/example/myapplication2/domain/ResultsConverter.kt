@@ -13,7 +13,10 @@ public class ResultsConverter {
     public fun fromStringToListInt(string: String): List<List<Int>> {
 
         val result = ArrayList<List<Int>>()
-        val split = string.replace("[", "").replace("]", "").replace(" ", "").split(",")
+        val split = string.replace("[", "")
+            .replace("]", "")
+            .replace(" ", "")
+            .split(",")
         for (n in split) {
             try {
                 result.add(listOf(n.toInt()))

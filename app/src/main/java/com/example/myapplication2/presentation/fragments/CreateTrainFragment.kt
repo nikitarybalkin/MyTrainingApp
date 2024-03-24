@@ -28,24 +28,11 @@ class CreateTrainFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[CreateTrainViewModel::class.java]
     }
-    /*private val component by lazy {
-        ( as App).component.
-    }
-
-     */
-
-    /*override fun onAttach(context: Context) {
-        (applicationContext as App).appComponent.inject(this)
-        super.onAttach(context)
-    }
-
-     */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //component.inject(this)
         binding = FragmentCreateTrainBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -55,28 +42,19 @@ class CreateTrainFragment : Fragment() {
         super.onAttach(context)
     }
 
-    //@SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
-        //(this as App).appComponent.inject(this)
-        //
         var lExes = mutableListOf<String>()
         var nameOfTrain: String? = context?.getString(R.string.no_name)
         binding.b1.text = context?.getString(R.string.next_exercise)
         binding.b2.text = context?.getString(R.string.finish_training)
 
-
-
         binding.b1.setOnClickListener() {
 
             if (binding.edNameOfTrain.text.isNotEmpty() && binding.edNameOfExercise.text.isNotEmpty()) {
                 nameOfTrain = binding.edNameOfTrain.text.toString()
-                //Log.d(TAG, "nameFTR = ${binding.edNameOfTrain.text.toString()}")
-                //l_Exes?.set(l_Exes.size - 1, binding.edNameOfExercise.text.toString())
                 lExes?.add(binding.edNameOfExercise.text.toString())
-                //Log.d(TAG, "l_exes = $l_Exes")
-                //l_Exes.add((binding.edNameOfExercise.text.toString()))
                 binding.edNameOfExercise.text.clear()
 
             }
