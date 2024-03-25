@@ -8,7 +8,7 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface ExerciseDao {
+interface TrainingDao {
 
     @Query("SELECT * FROM trainingTable")
     fun getAll(): Flow<List<TrainingEntity>>

@@ -10,6 +10,6 @@ import com.example.myapplication2.domain.TrainsConverter
     TrainsConverter::class,
 )
 abstract class AppDataBase : RoomDatabase() {
-    abstract fun exerciseDao() : ExerciseDao
+    abstract fun exerciseDao() : TrainingDao
     abstract fun resultsDao() : ResultsDao
 }

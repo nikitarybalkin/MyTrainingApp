@@ -3,8 +3,10 @@ package com.example.myapplication2.domain
 import android.content.Context
 import androidx.room.Room
 import com.example.myapplication2.data.AppDataBase
-import com.example.myapplication2.data.ExerciseDao
+import com.example.myapplication2.data.TrainingDao
 import com.example.myapplication2.data.ResultsDao
+import com.example.myapplication2.data.ResultsRepositoryImpl
+import com.example.myapplication2.data.TrainingRepositoryImpl
 import dagger.Module
 import dagger.Provides
 
@@ -13,13 +15,23 @@ import dagger.Provides
 class DatabaseModule {
 
     @Provides
-    fun providerExerciseBase(context: Context): AppDataBase {
+    fun provideTrainingRepository(trainingRepositoryImpl: TrainingRepositoryImpl): TrainingRepository {
+        return trainingRepositoryImpl
+    }
+
+    @Provides
+    fun provideResultsRepository(resultsRepositoryImpl: ResultsRepositoryImpl): ResultsRepository {
+        return resultsRepositoryImpl
+    }
+
+    @Provides
+    fun provideExerciseBase(context: Context): AppDataBase {
         return Room.databaseBuilder(context, AppDataBase::class.java, "db")
             .fallbackToDestructiveMigration().build()
     }
 
     @Provides
-    fun provideExerciseDao(db: AppDataBase): ExerciseDao {
+    fun provideExerciseDao(db: AppDataBase): TrainingDao {
         return db.exerciseDao()
     }
 

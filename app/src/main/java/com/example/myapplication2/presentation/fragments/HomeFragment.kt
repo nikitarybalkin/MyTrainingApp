@@ -44,7 +44,7 @@ class HomeFragment : Fragment() {
                 it[0]?.let {
                         binding.tvHDate2.text = it.date
                         binding.tvHNameOfTrain2.text = it.nameOfTrain
-                        binding.tvHTime2.text = TimeConverter().convTime(it.time)
+                        //binding.tvHTime2.text = TimeConverter().convTime(it.time)
                         id = it.id-1
                 }
             }
