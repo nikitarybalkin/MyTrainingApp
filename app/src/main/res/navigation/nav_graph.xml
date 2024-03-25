@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.myapplication2.presentation.fragments.StartFragment"
+        android:name="com.example.myapplication2.presentation.fragment.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/createTrainFragment"
-        android:name="com.example.myapplication2.presentation.fragments.CreateTrainFragment"
+        android:name="com.example.myapplication2.presentation.fragment.CreateTrainFragment"
         android:label="fragment_create_train"
         tools:layout="@layout/fragment_create_train" >
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultsFragment"
-        android:name="com.example.myapplication2.presentation.fragments.ResultsFragment"
+        android:name="com.example.myapplication2.presentation.fragment.ResultsFragment"
         android:label="fragment_results"
         tools:layout="@layout/fragment_results" >
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/myTrainingsFragment"
-        android:name="com.example.myapplication2.presentation.fragments.MyTrainingsFragment"
+        android:name="com.example.myapplication2.presentation.fragment.MyTrainingsFragment"
         android:label="fragment_my_trainings2"
         tools:layout="@layout/fragment_my_trainings2" >
         <action
@@ -56,12 +56,12 @@
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.myapplication2.presentation.fragments.MainActivity"
+        android:name="com.example.myapplication2.presentation.fragment.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/detailedFragment"
-        android:name="com.example.myapplication2.presentation.fragments.DetailedFragment"
+        android:name="com.example.myapplication2.presentation.fragment.DetailedFragment"
         android:label="fragment_detailed"
         tools:layout="@layout/fragment_detailed" >
 
@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/trainFragment"
-        android:name="com.example.myapplication2.presentation.fragments.TrainFragment"
+        android:name="com.example.myapplication2.presentation.fragment.TrainFragment"
         android:label="fragment_train"
         tools:layout="@layout/fragment_train" >
         <action
@@ -80,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/resultsDetailedFragment"
-        android:name="com.example.myapplication2.presentation.fragments.ResultsDetailedFragment"
+        android:name="com.example.myapplication2.presentation.fragment.ResultsDetailedFragment"
         android:label="fragment_results_detailed"
         tools:layout="@layout/fragment_results_detailed" >
         <argument
@@ -90,7 +90,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.myapplication2.presentation.fragments.HomeFragment"
+        android:name="com.example.myapplication2.presentation.fragment.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
