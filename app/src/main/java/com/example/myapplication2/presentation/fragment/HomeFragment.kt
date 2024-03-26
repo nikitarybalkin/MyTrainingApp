@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
         viewModel.getLastTable()
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.list.collect {
-                it[0]?.let {
+                it?.let {
                         binding.tvHDate2.text = it.date
                         binding.tvHNameOfTrain2.text = it.nameOfTrain
                         id = it.id-1

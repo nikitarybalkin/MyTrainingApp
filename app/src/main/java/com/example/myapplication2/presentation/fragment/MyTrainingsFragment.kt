@@ -15,6 +15,7 @@ import com.example.myapplication2.R
 import com.example.myapplication2.databinding.FragmentMyTrainings2Binding
 import com.example.myapplication2.di.App
 import com.example.myapplication2.data.TrainingEntity
+import com.example.myapplication2.domain.model.TrainingModel
 import com.example.myapplication2.presentation.adapter.MyAdapter
 import com.example.myapplication2.presentation.viewModel.MyTrainingsViewModel
 import com.example.myapplication2.presentation.viewModel.ViewModelFactory
@@ -53,7 +54,6 @@ class MyTrainingsFragment : Fragment() {
 
             viewModel._list?.collect {
                 it?.let {
-                    //a = it[it.lastIndex].toString()
                     val myAdapter =
                         context?.let { it1 ->
                             MyAdapter(
@@ -80,7 +80,7 @@ class MyTrainingsFragment : Fragment() {
         findNavController().navigate(R.id.action_myTrainingsFragment_to_detailedFragment, bundle)
     }
 
-    private fun delTable(table: TrainingEntity) {
+    private fun delTable(table: TrainingModel) {
         viewModel.delete(table)
     }
 }

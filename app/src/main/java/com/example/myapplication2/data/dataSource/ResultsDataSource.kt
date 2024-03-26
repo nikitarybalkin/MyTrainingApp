@@ -1,17 +1,13 @@
-package com.example.myapplication2.domain
+package com.example.myapplication2.data.dataSource
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
 import com.example.myapplication2.data.ResultsEntity
+import com.example.myapplication2.domain.model.ResultsModel
 import kotlinx.coroutines.flow.Flow
 
-interface ResultsRepository {
-
+interface ResultsDataSource {
     fun getAll(): Flow<List<ResultsEntity>>
 
-    fun getLastTR(): Flow<List<ResultsEntity>>
+    fun getLastTR(): Flow<ResultsEntity>
 
     suspend fun delete(table: ResultsEntity)
 

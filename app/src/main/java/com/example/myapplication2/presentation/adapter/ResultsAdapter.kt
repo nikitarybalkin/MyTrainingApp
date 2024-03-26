@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.myapplication2.databinding.ListOfResultsBinding
 import com.example.myapplication2.data.ResultsEntity
+import com.example.myapplication2.domain.model.ResultsModel
 
 class ResultsAdapter(
-    private val results: List<ResultsEntity>,
+    private val results: List<ResultsModel>,
     private val goToDetailedResults: (Int) -> Unit,
 
     ): RecyclerView.Adapter<ResultsViewHolder>() {

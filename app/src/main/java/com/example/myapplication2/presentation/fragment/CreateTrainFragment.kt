@@ -12,6 +12,7 @@ import com.example.myapplication2.R
 import com.example.myapplication2.databinding.FragmentCreateTrainBinding
 import com.example.myapplication2.di.App
 import com.example.myapplication2.data.TrainingEntity
+import com.example.myapplication2.domain.model.TrainingModel
 import com.example.myapplication2.presentation.viewModel.CreateTrainViewModel
 import com.example.myapplication2.presentation.viewModel.ViewModelFactory
 import javax.inject.Inject
@@ -60,7 +61,7 @@ class CreateTrainFragment : Fragment() {
         }
 
         binding.b2.setOnClickListener() {
-            viewModel.insert(TrainingEntity(nameOfTrain!!, lExes))
+            viewModel.insert(TrainingModel(nameOfTrain!!, lExes))
             findNavController().navigate(R.id.action_createTrainFragment_to_startFragment)
 
         }

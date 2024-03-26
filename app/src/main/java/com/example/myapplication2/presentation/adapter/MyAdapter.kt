@@ -9,12 +9,13 @@ import com.example.myapplication2.R
 
 import com.example.myapplication2.data.TrainingEntity
 import com.example.myapplication2.databinding.ListMyTrainingsBinding
+import com.example.myapplication2.domain.model.TrainingModel
 
 
 class MyAdapter(
-    private val table: List<TrainingEntity>,
+    private val table: List<TrainingModel>,
     var navigationAction: (Int) -> Unit,
-    var delTable: (TrainingEntity) -> Unit,
+    var delTable: (TrainingModel) -> Unit,
     var context: Context
 ) :
     RecyclerView.Adapter<MyViewHolder>() {

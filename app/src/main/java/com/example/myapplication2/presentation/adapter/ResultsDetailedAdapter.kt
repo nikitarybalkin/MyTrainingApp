@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.myapplication2.databinding.ListOfDetailedResultsBinding
 import com.example.myapplication2.data.ResultsEntity
+import com.example.myapplication2.domain.model.ResultsModel
 
 class ResultsDetailedAdapter(
-    val listOfExes: ResultsEntity
+    val listOfExes: ResultsModel
 
 ) : RecyclerView.Adapter<ResultsDetailedViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultsDetailedViewHolder {

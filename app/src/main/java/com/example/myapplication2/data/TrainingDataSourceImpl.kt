@@ -1,22 +1,21 @@
 package com.example.myapplication2.data
 
-import com.example.myapplication2.domain.model.TrainingModel
+import com.example.myapplication2.data.dataSource.TrainingDataSource
+import com.example.myapplication2.domain.model.ResultsModel
 import com.example.myapplication2.domain.model.mapToData
 import com.example.myapplication2.domain.model.mapToDomain
-import com.example.myapplication2.domain.repository.TrainingRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class TrainingRepositoryImpl @Inject constructor(private val db: TrainingDao): TrainingRepository {
-
+class TrainingDataSourceImpl @Inject constructor(private val db: TrainingDao): TrainingDataSource {
     /**
      * Функция, добавляющая запись в БД
      *
      * @param table запись, которую необходимо добавить
      */
-    override suspend fun insertTable(table: TrainingModel) {
-        db.insertTable(table.mapToData())
+    override suspend fun insertTable(table: TrainingEntity) {
+        db.insertTable(table)
     }
 
     /**
@@ -24,15 +23,15 @@ class TrainingRepositoryImpl @Inject constructor(private val db: TrainingDao): T
      *
      * @param training запись, которую необходимо удалить
      */
-    override suspend fun delete(training: TrainingModel) {
-        db.delete(training.mapToData())
+    override suspend fun delete(training: TrainingEntity) {
+        db.delete(training)
     }
 
     /**
      * Функция, возвращающая все значения из БД
      */
-    override fun getAll(): Flow<List<TrainingModel>> {
-        return db.getAll().map { list -> list.map { it.mapToDomain() } }
+    override fun getAll(): Flow<List<TrainingEntity>> {
+        return db.getAll()
     }
 
     /**
@@ -44,5 +43,4 @@ class TrainingRepositoryImpl @Inject constructor(private val db: TrainingDao): T
         return db.getOneTrainExercises(passedNameOfTrain)
 
     }
-
 }

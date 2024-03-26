@@ -17,6 +17,8 @@ import com.example.myapplication2.databinding.FragmentTrainBinding
 import com.example.myapplication2.di.App
 import com.example.myapplication2.data.ResultsEntity
 import com.example.myapplication2.data.TrainingEntity
+import com.example.myapplication2.domain.model.ResultsModel
+import com.example.myapplication2.domain.model.TrainingModel
 import com.example.myapplication2.presentation.viewModel.TrainViewModel
 import com.example.myapplication2.presentation.viewModel.ViewModelFactory
 import java.util.Calendar
@@ -51,7 +53,7 @@ class TrainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.startTimer()
         viewModel.getAll()
-        var resList1: List<TrainingEntity> = emptyList()
+        var resList1: List<TrainingModel> = emptyList()
         var bundle = arguments?.getInt("NameOfList")
         viewModel.getAll()
         var counter: Int = 0
@@ -92,7 +94,7 @@ class TrainFragment : Fragment() {
                 listOfQuantityOfSets.add(quantityOfSets.toString())
                 viewModel.stopTimer()
                 viewModel.insert(
-                    ResultsEntity(
+                    ResultsModel(
                         exercises = resList1[bundle].exercises!!,
                         countOfSets = listOfQuantityOfSets,
                         countInSet = listOfQuantityOfExes,

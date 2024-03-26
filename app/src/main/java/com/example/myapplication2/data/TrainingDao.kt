@@ -14,7 +14,7 @@ interface TrainingDao {
     fun getAll(): Flow<List<TrainingEntity>>
 
     @Query("SELECT exercise FROM trainingTable WHERE nameOfTrain = :passedNameOfTrain123")
-    fun getOneTrainExercises(passedNameOfTrain123: String): Flow<List<String>>
+    fun getOneTrainExercises(passedNameOfTrain123: String): Flow<String>
 
     @Delete
     suspend fun delete(table: TrainingEntity)
