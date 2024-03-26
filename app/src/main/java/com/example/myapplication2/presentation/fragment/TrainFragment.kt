@@ -34,20 +34,6 @@ class TrainFragment : Fragment() {
         ViewModelProvider(this, viewModelFactory)[TrainViewModel::class.java]
     }
     private lateinit var binding: FragmentTrainBinding
-    /*
-
-    private val viewModel: TrainViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                val resultsDAO = (requireActivity().application as App).db.resultsDao()
-                val trainingDAO = (requireActivity().application as App).db.exerciseDao()
-                return TrainViewModel(resultsDAO, trainingDAO) as T
-            }
-        }
-    }
-
-     */
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,23 +61,17 @@ class TrainFragment : Fragment() {
         var listOfQuantityInOne: MutableList<String> = emptyList<String>().toMutableList()
         var listOfWeight: MutableList<String> = emptyList<String>().toMutableList()
         var listOfWeightInOne: MutableList<String> = emptyList<String>().toMutableList()
-        //var date: DateFormat = SimpleDateFormat("dd.MM.yyyy", Calendar.getInstance().time)
-
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.resList.collect {
                 binding.tvNameOfExercise.text = it[bundle!!].exercises!![counter]
                 binding.tvNameOfTrain.text = it[bundle].nameOfTrainingEntity
                 resList1 = it
                 Log.d(TAG, "reslist1 = $resList1")
-
-
             }
-
         }
 
         binding.bNSet.setOnClickListener {
             if (binding.etQuantityOfRepeats.text.isNotEmpty() && binding.etWeight.text.isNotEmpty()) {
-
                 quantityOfSets++
                 listOfQuantityInOne.add(
                     binding.etQuantityOfRepeats.text.toString()
@@ -103,13 +83,9 @@ class TrainFragment : Fragment() {
                 binding.tvNumbOfSet.text = "It's your ${quantityOfSets + 1} set"
                 binding.etQuantityOfRepeats.text.clear()
                 binding.etWeight.text.clear()
-
             } else Toast.makeText(context, context?.getString(R.string.some_fields_empty), Toast.LENGTH_SHORT).show()
         }
-
-
         binding.bNExercise.setOnClickListener {
-
             if (counter >= resList1[bundle!!].exercises!!.lastIndex) {
                 listOfQuantityOfExes.add(listOfQuantityInOne.toString().replace(",", " |"))
                 listOfWeight.add(listOfWeightInOne.toString().replace(",", " |"))
@@ -141,15 +117,11 @@ class TrainFragment : Fragment() {
                 binding.tvNameOfTrain.text = resList1[bundle].nameOfTrainingEntity
                 listOfQuantityOfExes.add(listOfQuantityInOne.toString().replace(",", " |"))
                 listOfWeight.add(listOfWeightInOne.toString().replace(",", " |"))
-                //Log.d(TAG, "final l_Q = $listOfQuantityOfExes ||| final l_W = $listOfWeight")
                 binding.tvNumbOfSet.text = context?.getString(R.string.its_first_set)
                 listOfQuantityInOne.clear()
                 listOfWeightInOne.clear()
-
             }
-
         }
-
     }
 
     private fun getDate(): String {
@@ -158,6 +130,4 @@ class TrainFragment : Fragment() {
         append(calendar[Calendar.MONTH] + 1)
             .append("/").append(calendar[Calendar.YEAR]).append(" ").toString()
     }
-
-
 }

@@ -41,13 +41,6 @@ class TrainViewModel @Inject constructor(private val resultsUseCase: ResultsUseC
             time++
         }
 
-        /*viewModelScope.launch{
-            delay(1000)
-            time++
-        }
-
-         */
-
     }
     fun stopTimer() {
         timer.cancel()

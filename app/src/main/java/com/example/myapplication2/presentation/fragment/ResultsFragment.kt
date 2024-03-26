@@ -23,26 +23,11 @@ import javax.inject.Inject
 
 class ResultsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ResultsFragment()
-    }
-
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[ResultsViewModel::class.java]
     }
-    /*
-    private val viewModel: ResultsViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                val resultsDAO = (requireActivity().application as App).db.resultsDao()
-                return ResultsViewModel(resultsDAO) as T
-            }
-        }
-    }
-
-     */
     private lateinit var binding: FragmentResultsBinding
     override fun onAttach(context: Context) {
         (requireActivity().applicationContext as App).component.inject(this)
@@ -78,16 +63,12 @@ class ResultsFragment : Fragment() {
                     ).show()
                 }
             }
-
         }
-
     }
 
-    fun goToDetailedResults(id: Int) {
-        var bundle: Bundle = Bundle()
+    private fun goToDetailedResults(id: Int) {
+        val bundle: Bundle = Bundle()
         bundle.putInt("id", id)
         findNavController().navigate(R.id.action_resultsFragment_to_resultsDetailedFragment, bundle)
     }
-
-
 }

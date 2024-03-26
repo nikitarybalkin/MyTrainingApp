@@ -36,6 +36,7 @@ class MyTrainingsFragment : Fragment() {
         binding = FragmentMyTrainings2Binding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onAttach(context: Context) {
         (requireActivity().applicationContext as App).component.inject(this)
         super.onAttach(context)
@@ -63,26 +64,23 @@ class MyTrainingsFragment : Fragment() {
                             )
                         }
                     binding.myTrainingsRecycler.adapter = myAdapter
-                    if (it.isEmpty()) Toast.makeText(requireContext(), context?.getString(R.string.toast_of_trainings), Toast.LENGTH_SHORT).show()
+                    if (it.isEmpty()) Toast.makeText(
+                        requireContext(),
+                        context?.getString(R.string.toast_of_trainings),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-
-
             }
-
         }
-
     }
 
     private fun goToDetailed(num: Int) {
         val bundle = Bundle()
         bundle.putInt("aue", num)
         findNavController().navigate(R.id.action_myTrainingsFragment_to_detailedFragment, bundle)
-
     }
 
     private fun delTable(table: TrainingEntity) {
         viewModel.delete(table)
     }
-
-
 }

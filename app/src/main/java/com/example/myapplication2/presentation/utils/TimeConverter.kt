@@ -4,14 +4,14 @@ import android.content.Context
 import com.example.myapplication2.R
 import javax.inject.Inject
 
-class TimeConverter @Inject constructor(
+class TimeConverter(
     val context: Context
     ) {
     public fun convTime(time: String): String {
-        var t = time.toInt()
-        var sec = context?.getString(R.string.sec)
-        var min = context?.getString(R.string.min)
-        var hour = context?.getString(R.string.hour)
+        val t = time.toInt()
+        val sec = context?.getString(R.string.sec)
+        val min = context?.getString(R.string.min)
+        val hour = context?.getString(R.string.hour)
         var res: String = ""
         when (t) {
             in 1..59 -> res = "$t $sec"

@@ -31,15 +31,7 @@ class DetailedFragment : Fragment() {
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[DetailedViewModel::class.java]
-    }/*
-    private val viewModel: DetailedViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                val trainingDAO = (requireActivity().application as App).db.exerciseDao()
-                return DetailedViewModel(trainingDAO) as T
-            }
-        }
-    }*/
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,17 +52,15 @@ class DetailedFragment : Fragment() {
         viewModel.getList()
         var bundle = arguments?.getInt("aue")
         var bundle2 = Bundle()
-        //Log.d(TAG, "bundleInDetailed = $bundle")
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
 
             viewModel.listOfExers.collect{
-                    if (it.isNotEmpty() && it != null) {
+                    if (it.isNotEmpty()) {
                         bundle?.let { bundle ->
                             val adapter = it[bundle].exercises?.let { it1 -> DetailedAdapter(it1) }
                             binding.recyclerDetailed.adapter = adapter
                             bundle2.putInt("NameOfList", bundle)
                         }
-
                     }
             }
 

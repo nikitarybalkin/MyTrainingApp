@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class DetailedViewModel @Inject constructor(private val trainingUseCase: TrainingUseCase) : ViewModel() {
+class DetailedViewModel @Inject constructor(private val trainingUseCase: TrainingUseCase) :
+    ViewModel() {
     var listOfExers: Flow<List<TrainingEntity>> = MutableStateFlow(emptyList())
 
     fun getList() {
@@ -19,7 +20,5 @@ class DetailedViewModel @Inject constructor(private val trainingUseCase: Trainin
             listOfExers = trainingUseCase.getAll()
 
         }
-
     }
-
 }

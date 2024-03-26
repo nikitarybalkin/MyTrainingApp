@@ -20,7 +20,7 @@ public class ResultsConverter {
         for (n in split) {
             try {
                 result.add(listOf(n.toInt()))
-            } catch (e: Exception) {
+            } catch (_: Exception) {
 
             }
         }

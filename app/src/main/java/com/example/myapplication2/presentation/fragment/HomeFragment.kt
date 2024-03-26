@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.myapplication2.R
 import com.example.myapplication2.databinding.FragmentHomeBinding
 import com.example.myapplication2.di.App
+import com.example.myapplication2.presentation.utils.TimeConverter
 import com.example.myapplication2.presentation.viewModel.HomeViewModel
 import com.example.myapplication2.presentation.viewModel.ViewModelFactory
 import javax.inject.Inject
@@ -43,8 +44,9 @@ class HomeFragment : Fragment() {
                 it[0]?.let {
                         binding.tvHDate2.text = it.date
                         binding.tvHNameOfTrain2.text = it.nameOfTrain
-                        //binding.tvHTime2.text = TimeConverter().convTime(it.time)
                         id = it.id-1
+                    binding.tvHTime2.text = TimeConverter(requireActivity().applicationContext).convTime("3602")
+
                 }
             }
         }

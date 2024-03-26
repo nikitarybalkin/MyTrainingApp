@@ -16,7 +16,7 @@
     <string name="quantity_of_sets">Количество подходов</string>
     <string name="date">Дата</string>
     <string name="quantity_of_exercises">Количество упражнений</string>
-    <string name="finish_training">Закончить тренировку</string>
+    <string name="save_training">Сохранить тренировку</string>
     <string name="toast_of_result">Нету результатов предыдущих тренировок</string>
     <string name="toast_of_trainings">Нету сохранённых тренировок</string>
     <string name="its_first_set">Это ваш первый подход</string>
@@ -27,7 +27,9 @@
     <string name="greeting">Сегодня прекрасный день, чтобы потренироваться</string>
     <string name="last_training">Твоя последняя тренировка</string>
     <string name="sec">сек.</string>
-    <string name="min">мин..</string>
+    <string name="min">мин.</string>
     <string name="hour">час.</string>
+    <string name="you_wrote">Вы записали</string>
+    <string name="exercises">упражнение/ия.</string>
 
 </resources>

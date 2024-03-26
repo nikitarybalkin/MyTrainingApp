@@ -10,44 +10,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/date"
+        android:fontFamily="@font/archivo_semibold"
+        android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/line1"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="18dp" />
+        android:layout_marginLeft="40dp"
+        />
 
     <TextView
         android:id="@+id/tv_rNameOfTrain"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/name_of_train"
         android:gravity="center"
+        android:fontFamily="@font/archivo_semibold"
+        android:textSize="18sp"
         app:layout_constraintTop_toTopOf="@id/tv_rDate"
         android:layout_marginRight="35dp"
         app:layout_constraintRight_toLeftOf="@id/tv_rTime"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="20dp" />
+        app:layout_constraintLeft_toRightOf="@id/tv_rDate"
+        />
 
     <TextView
         android:id="@+id/tv_rTime"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/time"
         android:gravity="center"
+        android:fontFamily="@font/archivo_semibold"
+        android:textSize="18sp"
         app:layout_constraintTop_toTopOf="@id/tv_rDate"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="40dp"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteX="217dp"
-        tools:layout_editor_absoluteY="20dp" />
+        />
 
     <View
         android:id="@+id/line1"
-        android:layout_width="7dp"
-        android:layout_height="110dp"
+        android:layout_width="5dp"
+        android:layout_height="0dp"
         app:layout_constraintRight_toLeftOf="@+id/tv_rNameOfTrain"
-        android:layout_marginRight="26dp"
-        app:layout_constraintTop_toTopOf="@id/line2"
+        app:layout_constraintLeft_toRightOf="@id/tv_rDate"
+        app:layout_constraintTop_toBottomOf="@id/line2"
+        app:layout_constraintBottom_toBottomOf="@id/tv_rTime2"
+        android:layout_marginBottom="-15dp"
         android:background="@color/turquoise"
         tools:layout_editor_absoluteX="80dp"
         tools:layout_editor_absoluteY="0dp" />
@@ -57,20 +63,19 @@
         android:layout_height="7dp"
         android:background="@color/turquoise"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="0dp" />
+        />
 
     <View
         android:id="@+id/line4"
         android:layout_width="7dp"
-        android:layout_height="110dp"
+        android:layout_height="0dp"
         app:layout_constraintLeft_toRightOf="@+id/tv_rNameOfTrain"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="7dp"
-        app:layout_constraintTop_toTopOf="@id/line2"
+        app:layout_constraintRight_toLeftOf="@id/tv_rTime"
         android:background="@color/turquoise"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintTop_toBottomOf="@id/line2"
+        app:layout_constraintBottom_toBottomOf="@id/tv_rTime2"
+        android:layout_marginBottom="-15dp"
+        />
 
     <View
         android:id="@+id/line3"
@@ -86,19 +91,22 @@
         android:id="@+id/tv_rDate2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="28dp"
         android:textSize="14sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_rDate" />
+        android:fontFamily="@font/alata"
+        app:layout_constraintLeft_toLeftOf="@id/tv_rDate"
+        app:layout_constraintRight_toRightOf="@id/tv_rDate"
+        app:layout_constraintTop_toBottomOf="@id/tv_rDate"
+        android:layout_marginTop="30dp"
+        />
 
     <TextView
         android:id="@+id/tv_rNameOfTrain2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        app:layout_constraintRight_toRightOf="@+id/tv_rNameOfTrain"
+        android:fontFamily="@font/alata"
         app:layout_constraintLeft_toLeftOf="@id/tv_rNameOfTrain"
+        app:layout_constraintRight_toRightOf="@+id/tv_rNameOfTrain"
         app:layout_constraintTop_toBottomOf="@id/tv_rDate" />
 
     <TextView
@@ -106,7 +114,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_rTime"
+        android:fontFamily="@font/alata"
+        app:layout_constraintRight_toRightOf="@+id/tv_rTime"
         app:layout_constraintLeft_toLeftOf="@id/tv_rTime"
         app:layout_constraintTop_toBottomOf="@id/tv_rDate" />
 

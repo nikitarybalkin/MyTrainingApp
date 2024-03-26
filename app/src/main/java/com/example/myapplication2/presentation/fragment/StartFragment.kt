@@ -18,6 +18,7 @@ class StartFragment : Fragment() {
     companion object {
         fun newInstance() = StartFragment()
     }
+
     private lateinit var binding: FragmentStartBinding
     private lateinit var viewModel: StartViewModel
 
@@ -32,7 +33,6 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val time = Calendar.getInstance().time.toString()
-        Log.d(TAG, "$time")
         binding.bCreate.setOnClickListener {
             findNavController().navigate(R.id.action_startFragment_to_createTrainFragment)
         }

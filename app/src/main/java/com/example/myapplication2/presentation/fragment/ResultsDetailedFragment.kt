@@ -19,25 +19,11 @@ import javax.inject.Inject
 
 class ResultsDetailedFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ResultsDetailedFragment()
-    }
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[ResultsDetailedViewModel::class.java]
     }
-/*
-    private val viewModel: ResultsDetailedViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                val resultsDAO = (requireActivity().application as App).db.resultsDao()
-                return ResultsDetailedViewModel(resultsDAO) as T
-            }
-        }
-    }
-
- */
     private lateinit var binding: FragmentResultsDetailedBinding
 
     override fun onCreateView(
@@ -59,23 +45,15 @@ class ResultsDetailedFragment : Fragment() {
 
         binding.recyclerResultsDetailed.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-
-
         viewModel.getAll()
-
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
         var bundle = arguments?.getInt("id")
             viewModel.resList.collect {
-
                 it?.let {
                     var adapter = ResultsDetailedAdapter(it[bundle!!])
                     binding.recyclerResultsDetailed.adapter = adapter
                 }
             }
-
         }
-
-
     }
-
 }

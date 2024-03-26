@@ -18,10 +18,6 @@ import javax.inject.Inject
 
 class CreateTrainFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = CreateTrainFragment()
-    }
-
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var binding: FragmentCreateTrainBinding
@@ -45,10 +41,11 @@ class CreateTrainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
-        var lExes = mutableListOf<String>()
+        val lExes = mutableListOf<String>()
+        var counter = 0
         var nameOfTrain: String? = context?.getString(R.string.no_name)
         binding.b1.text = context?.getString(R.string.next_exercise)
-        binding.b2.text = context?.getString(R.string.finish_training)
+        binding.b2.text = context?.getString(R.string.save_training)
 
         binding.b1.setOnClickListener() {
 
@@ -56,7 +53,8 @@ class CreateTrainFragment : Fragment() {
                 nameOfTrain = binding.edNameOfTrain.text.toString()
                 lExes?.add(binding.edNameOfExercise.text.toString())
                 binding.edNameOfExercise.text.clear()
-
+                counter++
+                binding.tvRememb.text = "${requireActivity().applicationContext.getText(R.string.you_wrote)} $counter ${requireActivity().applicationContext.getText(R.string.exercises)}"
             }
 
         }

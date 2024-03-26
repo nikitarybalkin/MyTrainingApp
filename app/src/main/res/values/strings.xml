@@ -16,7 +16,7 @@
     <string name="quantity_of_sets">Quantity of sets</string>
     <string name="date">Date</string>
     <string name="quantity_of_exercises">Quantity of exercises</string>
-    <string name="finish_training">Finish training</string>
+    <string name="save_training">Save training</string>
     <string name="toast_of_result">You don\'t have saved results of last trainings</string>
     <string name="toast_of_trainings">You don\'t have saved trainings</string>
     <string name="its_first_set">It\'s your first set of that exercise</string>
@@ -29,6 +29,10 @@
     <string name="sec">sec.</string>
     <string name="min">min.</string>
     <string name="hour">hour.</string>
+    <string name="you_wrote">You wrote</string>
+    <string name="exercises">exercise/s.</string>
+
+
 
 
 

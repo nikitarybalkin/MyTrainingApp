@@ -17,12 +17,8 @@ class MyTrainingsViewModel @Inject constructor(
     var _list: Flow<List<TrainingEntity>>? = MutableStateFlow(emptyList())
 
     fun getAll() {
-        Log.d("MyTrainings", "nameOfVM=$this")
         viewModelScope.launch {
-
             _list = trainingUseCase.getAll()
-            Log.d(TAG, "получаемая таблица = $_list.")
-
         }
 
     }
