@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface ResultsRepository {
 
-    fun getAll(): Flow<List<ResultsModel>>
+    fun getAll(): Flow<List<ResultsModel?>>
 
-    fun getLastTR(): Flow<ResultsModel>
+    fun getLastTR(): Flow<List<ResultsModel?>>
 
     suspend fun delete(table: ResultsModel)
 

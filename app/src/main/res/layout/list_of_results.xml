@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="10dp"
         />
 
     <TextView
@@ -52,8 +52,8 @@
         app:layout_constraintRight_toLeftOf="@+id/tv_rNameOfTrain"
         app:layout_constraintLeft_toRightOf="@id/tv_rDate"
         app:layout_constraintTop_toBottomOf="@id/line2"
-        app:layout_constraintBottom_toBottomOf="@id/tv_rTime2"
-        android:layout_marginBottom="-15dp"
+        app:layout_constraintBottom_toTopOf="@id/line3"
+
         android:background="@color/turquoise"
         tools:layout_editor_absoluteX="80dp"
         tools:layout_editor_absoluteY="0dp" />
@@ -73,8 +73,7 @@
         app:layout_constraintRight_toLeftOf="@id/tv_rTime"
         android:background="@color/turquoise"
         app:layout_constraintTop_toBottomOf="@id/line2"
-        app:layout_constraintBottom_toBottomOf="@id/tv_rTime2"
-        android:layout_marginBottom="-15dp"
+        app:layout_constraintBottom_toTopOf="@id/line3"
         />
 
     <View
@@ -82,10 +81,10 @@
         android:layout_width="match_parent"
         android:layout_height="7dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/line1"
+        app:layout_constraintTop_toBottomOf="@id/tv_rTime2"
         android:background="@color/turquoise"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="110dp" />
+        android:layout_marginTop="20dp"
+        />
 
     <TextView
         android:id="@+id/tv_rDate2"
@@ -115,8 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/alata"
-        app:layout_constraintRight_toRightOf="@+id/tv_rTime"
-        app:layout_constraintLeft_toLeftOf="@id/tv_rTime"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_rDate" />
 
     <View

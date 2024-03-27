@@ -9,7 +9,7 @@ import com.example.myapplication2.data.TrainingDao
 import com.example.myapplication2.data.TrainingEntity
 import com.example.myapplication2.presentation.utils.TrainsConverter
 
-@Database(entities = [TrainingEntity::class, ResultsEntity::class], version = 6, exportSchema = false)
+@Database(entities = [TrainingEntity::class, ResultsEntity::class], version = 8, exportSchema = false)
 @TypeConverters(
     TrainsConverter::class,
 )

@@ -14,15 +14,15 @@ class ResultsRepositoryImpl @Inject constructor(private val ds: ResultsDataSourc
     /**
      * Функция, возвращающая все значения из БД
      */
-    override fun getAll(): Flow<List<ResultsModel>> {
+    override fun getAll(): Flow<List<ResultsModel?>> {
         return ds.getAll().map { list -> list.map { it.mapToDomain() } }
     }
 
     /**
      * Функция, возвращающая последнюю запись из БД
      */
-    override fun getLastTR(): Flow<ResultsModel> {
-        return ds.getLastTR().map { it.mapToDomain() }
+    override fun getLastTR(): Flow<List<ResultsModel?>> {
+        return ds.getLastTR().map { last -> last.map { it?.mapToDomain() } }
     }
 
     /**

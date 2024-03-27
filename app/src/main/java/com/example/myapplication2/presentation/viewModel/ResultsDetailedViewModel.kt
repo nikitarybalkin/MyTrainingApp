@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ResultsDetailedViewModel @Inject constructor(private val resultsUseCase: ResultsUseCase) : ViewModel() {
-    var resList: Flow<List<ResultsModel>> = MutableStateFlow(emptyList())
+    var resList: Flow<List<ResultsModel?>> = MutableStateFlow(emptyList())
     fun getAll() {
         viewModelScope.launch {
             resList = resultsUseCase.getAll()

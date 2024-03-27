@@ -51,16 +51,19 @@ class ResultsFragment : Fragment() {
 
             viewModel.listOfExers?.collect {
                 it?.let {
-                    Log.d(TAG, "$it")
+                    Log.d(TAG, "aue $it")
                     var adapter = ResultsAdapter(
                         it
                     ) { num -> goToDetailedResults(num) }
                     binding.recyclerResults.adapter = adapter
-                    if (it.isEmpty()) Toast.makeText(
-                        requireContext(),
-                        context?.getString(R.string.toast_of_result),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (it.isEmpty()) {
+                        Toast.makeText(
+                            requireContext(),
+                            context?.getString(R.string.toast_of_result),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        Log.d(TAG, "here is null")
+                    }
                 }
             }
         }

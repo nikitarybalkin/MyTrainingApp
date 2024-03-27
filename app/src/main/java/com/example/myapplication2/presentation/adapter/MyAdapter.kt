@@ -1,6 +1,9 @@
 package com.example.myapplication2.presentation.adapter
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.nfc.Tag
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +37,7 @@ class MyAdapter(
         holder.binding.tvNameOfTrainField.setOnClickListener {
             navigationAction(position)
         }
+        Log.d(TAG, "your tr is null")
         holder.binding.bDelete.setOnClickListener {
             delTable(table[position])
         }

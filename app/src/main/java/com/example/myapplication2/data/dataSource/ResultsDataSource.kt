@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface ResultsDataSource {
     fun getAll(): Flow<List<ResultsEntity>>
 
-    fun getLastTR(): Flow<ResultsEntity>
+    fun getLastTR(): Flow<List<ResultsEntity?>>
 
     suspend fun delete(table: ResultsEntity)
 

@@ -7,11 +7,14 @@ import com.example.myapplication2.domain.model.ResultsModel
 import com.example.myapplication2.domain.useCase.ResultsUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ResultsViewModel @Inject constructor(private val resultsUseCase: ResultsUseCase) : ViewModel() {
-    var listOfExers: Flow<List<ResultsModel>>? = MutableStateFlow(emptyList())
+class ResultsViewModel @Inject constructor(
+    private val resultsUseCase: ResultsUseCase
+) : ViewModel() {
+    var listOfExers: Flow<List<ResultsModel?>> = flowOf()
     fun getAll() {
         viewModelScope.launch {
 

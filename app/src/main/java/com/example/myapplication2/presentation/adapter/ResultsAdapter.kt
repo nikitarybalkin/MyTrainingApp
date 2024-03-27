@@ -9,7 +9,7 @@ import com.example.myapplication2.data.ResultsEntity
 import com.example.myapplication2.domain.model.ResultsModel
 
 class ResultsAdapter(
-    private val results: List<ResultsModel>,
+    private val results: List<ResultsModel?>,
     private val goToDetailedResults: (Int) -> Unit,
 
     ): RecyclerView.Adapter<ResultsViewHolder>() {
@@ -21,9 +21,9 @@ class ResultsAdapter(
     override fun getItemCount(): Int = results.size
 
     override fun onBindViewHolder(holder: ResultsViewHolder, position: Int) {
-        holder.binding.tvRNameOfTrain2.text = results[position].nameOfTrain
-        holder.binding.tvRDate2.text = results[position].date
-        holder.binding.tvRTime2.text = convTime(results[position].time)
+        holder.binding.tvRNameOfTrain2.text = results[position]!!.nameOfTrain
+        holder.binding.tvRDate2.text = results[position]!!.date
+        holder.binding.tvRTime2.text = convTime(results[position]!!.time)
         holder.binding.RView.setOnClickListener{
             goToDetailedResults(position)
         }

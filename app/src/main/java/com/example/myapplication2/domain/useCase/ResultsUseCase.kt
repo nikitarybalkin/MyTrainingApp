@@ -8,11 +8,11 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ResultsUseCase @Inject constructor(private val resultsRepositoryImpl: ResultsRepositoryImpl) {
-    fun getAll(): Flow<List<ResultsModel>> {
+    fun getAll(): Flow<List<ResultsModel?>> {
         return resultsRepositoryImpl.getAll()
     }
 
-    fun getLastTR(): Flow<ResultsModel> {
+    fun getLastTR(): Flow<List<ResultsModel?>> {
         return resultsRepositoryImpl.getLastTR()
     }
 

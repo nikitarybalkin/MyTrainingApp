@@ -11,7 +11,7 @@ class ResultsDataSourceImpl @Inject constructor(private val db: ResultsDao): Res
         return db.getAll()
     }
 
-    override fun getLastTR(): Flow<ResultsEntity> {
+    override fun getLastTR(): Flow<List<ResultsEntity?>> {
         return db.getLastTR()
     }
 

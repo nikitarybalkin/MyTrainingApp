@@ -12,7 +12,7 @@ import com.example.myapplication2.data.ResultsEntity
 import com.example.myapplication2.domain.model.ResultsModel
 
 class ResultsDetailedAdapter(
-    val listOfExes: ResultsModel
+    val listOfExes: ResultsModel?
 
 ) : RecyclerView.Adapter<ResultsDetailedViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultsDetailedViewHolder {
@@ -20,12 +20,12 @@ class ResultsDetailedAdapter(
         return ResultsDetailedViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = listOfExes.exercises.size
+    override fun getItemCount(): Int = listOfExes!!.exercises.size
 
     override fun onBindViewHolder(holder: ResultsDetailedViewHolder, position: Int) {
         Log.d(TAG, "position = $position")
-        Log.d(TAG, "gettable ${listOfExes.countInSet.size}")
-        holder.binding.tvRdNameOfExercise2.text = listOfExes.exercises[position]
+        Log.d(TAG, "gettable ${listOfExes!!.countInSet.size}")
+        holder.binding.tvRdNameOfExercise2.text = listOfExes!!.exercises[position]
         holder.binding.tvRdQuantityOfRepeats2.text =
             convWithoutBrackets(listOfExes.countInSet[position])
         holder.binding.tvRdQuantityOfSets2.text = listOfExes.countOfSets[position]

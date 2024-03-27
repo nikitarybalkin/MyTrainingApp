@@ -16,7 +16,7 @@ interface ResultsDao {
     @Query("SELECT * \n" +
             "    FROM resultsTable\n" +
             "    WHERE id = (SELECT MAX(id) FROM resultsTable);")
-    fun getLastTR(): Flow<ResultsEntity>
+    fun getLastTR(): Flow<List<ResultsEntity?>>
 
     @Delete
     suspend fun delete(table: ResultsEntity)

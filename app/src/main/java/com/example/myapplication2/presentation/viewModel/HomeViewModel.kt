@@ -14,11 +14,13 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val resultsUseCase: ResultsUseCase
 ): ViewModel() {
-    var list: Flow<ResultsModel> = flowOf()
+    var list: Flow<List<ResultsModel?>> = flowOf()
     fun getLastTable() {
         viewModelScope.launch {
             list = resultsUseCase.getLastTR()
         }
     }
+
+
 
 }
