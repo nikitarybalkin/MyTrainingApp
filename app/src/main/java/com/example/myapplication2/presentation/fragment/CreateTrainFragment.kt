@@ -62,7 +62,7 @@ class CreateTrainFragment : Fragment() {
 
         binding.b2.setOnClickListener() {
             viewModel.insert(TrainingModel(nameOfTrain!!, lExes))
-            findNavController().navigate(R.id.action_createTrainFragment_to_startFragment)
+            findNavController().navigate(R.id.action_createTrainFragment_to_homeFragment)
 
         }
     }

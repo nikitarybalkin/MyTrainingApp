@@ -31,5 +31,6 @@
     <string name="hour">час.</string>
     <string name="you_wrote">Вы записали</string>
     <string name="exercises">упражнение/ия.</string>
+    <string name="count_of_exercise">Номер подхода.</string>
 
 </resources>
