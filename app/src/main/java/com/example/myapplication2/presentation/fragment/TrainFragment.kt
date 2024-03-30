@@ -54,19 +54,19 @@ class TrainFragment : Fragment() {
         viewModel.startTimer()
         viewModel.getAll()
         var resList1: List<TrainingModel> = emptyList()
-        var bundle = arguments?.getInt("NameOfList")
+        val bundle = arguments?.getInt("NameOfList")
         viewModel.getAll()
         var counter: Int = 0
         var quantityOfSets = 0
-        var listOfQuantityOfSets: MutableList<String> = emptyList<String>().toMutableList()
-        var listOfQuantityOfExes: MutableList<String> = emptyList<String>().toMutableList()
-        var listOfQuantityInOne: MutableList<String> = emptyList<String>().toMutableList()
-        var listOfWeight: MutableList<String> = emptyList<String>().toMutableList()
-        var listOfWeightInOne: MutableList<String> = emptyList<String>().toMutableList()
+        val listOfQuantityOfSets: MutableList<String> = emptyList<String>().toMutableList()
+        val listOfQuantityOfExes: MutableList<String> = emptyList<String>().toMutableList()
+        val listOfQuantityInOne: MutableList<String> = emptyList<String>().toMutableList()
+        val listOfWeight: MutableList<String> = emptyList<String>().toMutableList()
+        val listOfWeightInOne: MutableList<String> = emptyList<String>().toMutableList()
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.resList.collect {
-                binding.tvNameOfExercise.text = it[bundle!!].exercises!![counter]
-                binding.tvNameOfTrain.text = it[bundle].nameOfTrainingEntity
+                binding.tvNameOfExercise2.text = it[bundle!!].exercises!![counter]
+                binding.tvNameOfTrain2.text = it[bundle].nameOfTrainingEntity
                 resList1 = it
                 Log.d(TAG, "reslist1 = $resList1")
             }
@@ -115,8 +115,8 @@ class TrainFragment : Fragment() {
                 listOfQuantityOfSets.add(quantityOfSets.toString())
                 quantityOfSets = 0
                 counter++
-                binding.tvNameOfExercise.text = resList1[bundle].exercises!![counter]
-                binding.tvNameOfTrain.text = resList1[bundle].nameOfTrainingEntity
+                binding.tvNameOfExercise2.text = resList1[bundle].exercises!![counter]
+                binding.tvNameOfTrain2.text = resList1[bundle].nameOfTrainingEntity
                 listOfQuantityOfExes.add(listOfQuantityInOne.toString().replace(",", " |"))
                 listOfWeight.add(listOfWeightInOne.toString().replace(",", " |"))
                 binding.tvNumbOfSet.text = context?.getString(R.string.its_first_set)

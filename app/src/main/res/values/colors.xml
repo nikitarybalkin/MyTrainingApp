@@ -5,5 +5,7 @@
     <color name="grey">#7c8ca6</color>
     <color name="turquoise">#74b0b3</color>
     <color name="peach">#FFEBCD</color>
+    <color name="crimson_red">#DC143C</color>
+
 
 </resources>
