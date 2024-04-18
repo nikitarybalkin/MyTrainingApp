@@ -1,5 +1,8 @@
 package com.example.myapplication2.presentation.viewModel
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication2.data.ResultsEntity
@@ -19,6 +22,7 @@ import kotlin.concurrent.schedule
 class TrainViewModel @Inject constructor(private val resultsUseCase: ResultsUseCase, private val trainingUseCase: TrainingUseCase) : ViewModel() {
     var resList : Flow<List<TrainingModel>> = MutableStateFlow(emptyList())
     var exesList : Flow<String> = flowOf()
+    var indexOfExercise: MutableLiveData<Int?> = MutableLiveData(null)
     var time: Int = 0
     var timer = Timer()
     fun getAll() {
@@ -36,6 +40,7 @@ class TrainViewModel @Inject constructor(private val resultsUseCase: ResultsUseC
 
     fun insert(table: ResultsModel) {
         viewModelScope.launch { resultsUseCase.insert(table) }
+        Log.d("LOL","insert is successful")
 
     }
 

@@ -77,6 +77,9 @@
         <action
             android:id="@+id/action_trainFragment_to_startFragment"
             app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_trainFragment_to_trainBottomSheetFragment"
+            app:destination="@id/trainBottomSheetFragment" />
     </fragment>
     <fragment
         android:id="@+id/resultsDetailedFragment"
@@ -97,4 +100,13 @@
             android:id="@+id/action_homeFragment_to_resultsDetailedFragment"
             app:destination="@id/resultsDetailedFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/trainBottomSheetFragment"
+        android:name="com.example.myapplication2.presentation.fragment.TrainBottomSheetFragment"
+        android:label="fragment_train_bottom_sheet"
+        tools:layout="@layout/fragment_train_bottom_sheet" >
+        <argument
+            android:name="listOfExercises"
+            app:argType="string[]" />
+    </dialog>
 </navigation>

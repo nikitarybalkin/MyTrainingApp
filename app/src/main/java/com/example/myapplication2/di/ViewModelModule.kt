@@ -12,39 +12,44 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import dagger.multibindings.StringKey
+import javax.inject.Singleton
 
 @Module
 interface ViewModelModule {
 
+    @Singleton
     @IntoMap
     @StringKey("TrainViewModel")
     @Binds
     fun bindsTrainViewModel(impl: TrainViewModel): ViewModel
+    @Singleton
     @IntoMap
     @StringKey("CreateTrainViewModel")
     @Binds
     fun bindsCreateTrainViewModel(impl: CreateTrainViewModel): ViewModel
+    @Singleton
     @IntoMap
     @StringKey("MyTrainingsViewModel")
     @Binds
     fun bindsMyTrainingsViewModel(impl: MyTrainingsViewModel): ViewModel
+    @Singleton
     @IntoMap
     @StringKey("ResultsViewModel")
     @Binds
     fun bindsResultsViewModel(impl: ResultsViewModel): ViewModel
+    @Singleton
     @IntoMap
     @StringKey("DetailedViewModel")
     @Binds
     fun bindsDetailedViewModel(impl: DetailedViewModel): ViewModel
+    @Singleton
     @IntoMap
     @StringKey("ResultsDetailedViewModel")
     @Binds
     fun bindsResultsDetailedViewModel(impl: ResultsDetailedViewModel): ViewModel
+    @Singleton
     @IntoMap
     @StringKey("HomeViewModel")
     @Binds
     fun bindsHomeViewModel(impl: HomeViewModel): ViewModel
-
-
-
 }

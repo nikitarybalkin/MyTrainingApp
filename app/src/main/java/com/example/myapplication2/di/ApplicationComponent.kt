@@ -7,10 +7,13 @@ import com.example.myapplication2.presentation.fragment.HomeFragment
 import com.example.myapplication2.presentation.fragment.MyTrainingsFragment
 import com.example.myapplication2.presentation.fragment.ResultsDetailedFragment
 import com.example.myapplication2.presentation.fragment.ResultsFragment
+import com.example.myapplication2.presentation.fragment.TrainBottomSheetFragment
 import com.example.myapplication2.presentation.fragment.TrainFragment
 import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Singleton
 
+@Singleton
 @Component(modules = [DatabaseModule::class, ViewModelModule::class])
 interface ApplicationComponent {
     fun inject(fragment: CreateTrainFragment)
@@ -20,6 +23,7 @@ interface ApplicationComponent {
     fun inject(fragment: ResultsDetailedFragment)
     fun inject(fragment: TrainFragment)
     fun inject(fragment: HomeFragment)
+    fun inject(fragment: TrainBottomSheetFragment)
 
 
     @Component.Factory
