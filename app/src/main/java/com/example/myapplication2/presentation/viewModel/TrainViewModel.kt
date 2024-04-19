@@ -40,7 +40,7 @@ class TrainViewModel @Inject constructor(private val resultsUseCase: ResultsUseC
 
     fun insert(table: ResultsModel) {
         viewModelScope.launch { resultsUseCase.insert(table) }
-        Log.d("LOL","insert is successful")
+        Log.d("LOL","insert is vm. Table = ${table.weights}")
 
     }
 

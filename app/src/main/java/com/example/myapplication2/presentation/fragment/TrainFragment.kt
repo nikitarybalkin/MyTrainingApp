@@ -41,13 +41,13 @@ class TrainFragment : Fragment() {
     var counter: Int = 0
     var quantityOfSets = 0
     var indexOfExercise1: Int? = null
-    var listOfQuantityOfSets: MutableList<String> = emptyList<String>().toMutableList()
-    var listOfQuantityOfExes: MutableList<String> = emptyList<String>().toMutableList()
-    var listOfQuantityInOne: MutableList<String> = emptyList<String>().toMutableList()
-    var listOfWeight: MutableList<String> = emptyList<String>().toMutableList()
-    var listOfExercises: MutableList<String> = emptyList<String>().toMutableList()
-    var listOfWeightInOne: MutableList<String> = emptyList<String>().toMutableList()
-    var listOfIndexes: MutableList<Int> = emptyList<Int>().toMutableList()
+    var listOfQuantityOfSets: MutableList<String> = mutableListOf()
+    var listOfQuantityOfExes: MutableList<String> = mutableListOf()
+    var listOfQuantityInOne: MutableList<String> = mutableListOf()
+    var listOfWeight: MutableList<String> = mutableListOf()
+    var listOfExercises: MutableList<String> = mutableListOf()
+    var listOfWeightInOne: MutableList<String> = mutableListOf()
+    var listOfIndexes: MutableList<Int> = mutableListOf()
     var bundle: Int? = null
     var resList1: List<TrainingModel> = emptyList()
     override fun onCreateView(
@@ -67,12 +67,10 @@ class TrainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.startTimer()
         viewModel.getAll()
-        viewModel.getAll()
         bundle = arguments?.getInt("NameOfList")
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.resList.collect {
                 binding.tvNameOfExercise.text = "Выберете упражнение"
-                //binding.tvNameOfExercise.text = it[bundle!!].exercises!![counter]
                 binding.tvNameOfTrain.text = it[bundle!!].nameOfTrainingEntity
                 resList1 = it
                 Log.d(TAG, "reslist1 = $resList1")
@@ -90,9 +88,7 @@ class TrainFragment : Fragment() {
                 R.id.action_trainFragment_to_trainBottomSheetFragment,
                 bundleToSheet
             )
-            //TrainBottomSheetFragment().show(childFragmentManager, "trainBottomSheet")
         }
-        Log.d("LOL", "vm in train ${viewModel}")
         viewModel.indexOfExercise.observe(viewLifecycleOwner) {
             Log.d("LOL", "заколлектило")
             if (it != null) {
@@ -101,23 +97,42 @@ class TrainFragment : Fragment() {
                 setExercise()
             }
         }
+        binding.tvNameOfTrain.setOnClickListener {
+            viewModel.insert(
+                ResultsModel(
+                    exercises = listOfExercises,
+                    countOfSets = listOf("2"),
+                    countInSet = listOf("10,11"),
+                    weights = listOf("10,11"),
+                    date = getDate(),
+                    nameOfTrain = resList1[bundle!!].nameOfTrainingEntity,
+                    time = viewModel.time.toString()
+                )
+            )
+            Log.d("LOL", "Рабочий инсерт = exercise = ${listOfExercises}, countOfSets = ${listOf("2")}, countInSet = ${listOf("10,11")}, weights = ${listOf("10,11")}")
+        }
 
         binding.bNExercise.setOnClickListener {
             if (counter >= resList1[bundle!!].exercises!!.lastIndex) {
-                listOfQuantityOfExes.add(listOfQuantityInOne.toString().replace(",", " |"))
-                listOfWeight.add(listOfWeightInOne.toString().replace(",", " |"))
+                listOfQuantityOfExes.add(listOfQuantityInOne.toString().replace(",", " |").replace(",", " |").replace("[","").replace("]",""))
+                listOfWeight.add(listOfWeightInOne.toString().replace(",", " |").replace(",", " |").replace("[","").replace("]",""))
                 listOfQuantityOfSets.add(quantityOfSets.toString())
                 viewModel.stopTimer()
+                var resModel = ResultsModel(
+                    exercises = listOfExercises.toList(),
+                    countOfSets = listOfQuantityOfSets.toList(),
+                    countInSet = listOfQuantityOfExes.toList(),
+                    weights = listOfWeight.toList(),
+                    date = getDate(),
+                    nameOfTrain = resList1[bundle!!].nameOfTrainingEntity,
+                    time = viewModel.time.toString()
+                )
+                Log.d(
+                    "LOL",
+                    "lExercises = ${listOfExercises.toList()}/countOfSets = ${listOfQuantityOfSets.toList()}, listOfQuantityOfExes = ${listOfQuantityOfExes.toList()}, listOfWeight = ${listOfWeight.toList()}"
+                )
                 viewModel.insert(
-                    ResultsModel(
-                        exercises = listOfExercises,
-                        countOfSets = listOfQuantityOfSets,
-                        countInSet = listOfQuantityOfExes,
-                        weights = listOfWeight,
-                        date = getDate(),
-                        nameOfTrain = resList1[bundle!!].nameOfTrainingEntity,
-                        time = viewModel.time.toString()
-                    )
+                    resModel
                 )
                 Log.d(
                     TAG,
@@ -128,23 +143,16 @@ class TrainFragment : Fragment() {
                     context?.getString(R.string.training_is_over),
                     Toast.LENGTH_SHORT
                 ).show()
-                findNavController().navigate(R.id.action_trainFragment_to_startFragment)
+                //findNavController().navigate(R.id.action_trainFragment_to_startFragment)
             } else {
-                listOfIndexes.add(indexOfExercise1!!)
-                listOfExercises.add(resList1[bundle!!].exercises!![counter])
-                listOfQuantityOfSets.add(
-                    element = quantityOfSets.toString()
-                )
+                //listOfIndexes.add(indexOfExercise1!!)
+                listOfQuantityOfSets.add(quantityOfSets.toString())
                 quantityOfSets = 0
                 counter++
                 binding.tvNameOfExercise.text = resList1[bundle!!].exercises!![counter]
                 binding.tvNameOfTrain.text = resList1[bundle!!].nameOfTrainingEntity
-                listOfQuantityOfExes.add(
-                    element = listOfQuantityInOne.toString().replace(",", " |")
-                )
-                listOfWeight.add(
-                    element = listOfWeightInOne.toString().replace(",", " |")
-                )
+                listOfQuantityOfExes.add(listOfQuantityInOne.toString().replace(",", " |").replace("[","").replace("]",""))
+                listOfWeight.add(listOfWeightInOne.toString().replace(",", " |").replace(",", " |").replace("[","").replace("]",""))
                 binding.tvNumbOfSet.text = context?.getString(R.string.its_first_set)
                 listOfQuantityInOne.clear()
                 listOfWeightInOne.clear()
@@ -153,12 +161,13 @@ class TrainFragment : Fragment() {
 
     }
 
-    fun setExercise() {
+    private fun setExercise() {
+        listOfExercises.add(resList1[bundle!!].exercises!![indexOfExercise1!!])
         binding.tvNameOfExercise.text = resList1[bundle!!].exercises!![indexOfExercise1!!]
         binding.bNSet.setOnClickListener {
             if (binding.etQuantityOfRepeats.text.isNotEmpty() && binding.etWeight.text.isNotEmpty()) {
                 quantityOfSets++
-                listOfQuantityInOne.add(element = binding.etQuantityOfRepeats.text.toString())
+                listOfQuantityInOne.add(binding.etQuantityOfRepeats.text.toString())
                 Log.d(TAG, "listOfQuantityInOne = $listOfQuantityInOne")
                 Log.d(
                     TAG,

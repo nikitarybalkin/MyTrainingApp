@@ -1,5 +1,6 @@
 package com.example.myapplication2.domain.useCase
 
+import android.util.Log
 import com.example.myapplication2.data.ResultsEntity
 import com.example.myapplication2.data.ResultsRepositoryImpl
 import com.example.myapplication2.domain.model.ResultsModel
@@ -21,6 +22,7 @@ class ResultsUseCase @Inject constructor(private val resultsRepositoryImpl: Resu
     }
 
     suspend fun insert(table: ResultsModel) {
+        Log.d("LOL","заинсертило in useCase resultsEntity. table = ${table.exercises}")
         resultsRepositoryImpl.insert(table)
     }
 

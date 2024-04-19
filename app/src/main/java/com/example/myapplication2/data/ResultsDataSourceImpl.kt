@@ -1,5 +1,6 @@
 package com.example.myapplication2.data
 
+import android.util.Log
 import com.example.myapplication2.data.dataSource.ResultsDataSource
 import com.example.myapplication2.domain.model.mapToDomain
 import kotlinx.coroutines.flow.Flow
@@ -30,6 +31,7 @@ class ResultsDataSourceImpl @Inject constructor(private val db: ResultsDao): Res
      * @param table запись, которую необходимо добавить
      */
     override suspend fun insert(table: ResultsEntity) {
+        Log.d("LOL","заинсертило in datasource resultsEntity. table = ${table.exercises}")
         db.insert(table)
     }
 

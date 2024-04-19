@@ -49,13 +49,8 @@ class ResultsFragment : Fragment() {
         viewModel.getAll()
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
 
-            viewModel.listOfExers?.collect {
-                it?.let {
-                    Log.d(TAG, "aue $it")
-                    var adapter = ResultsAdapter(
-                        it
-                    ) { num -> goToDetailedResults(num) }
-                    binding.recyclerResults.adapter = adapter
+            viewModel.listOfExers.collect {
+                //Log.d("LOL", "resModel = ${it[0]?.weights}")
                     if (it.isEmpty()) {
                         Toast.makeText(
                             requireContext(),
@@ -63,8 +58,14 @@ class ResultsFragment : Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
                         Log.d(TAG, "here is null")
+                    } else {
+                        Log.d(TAG, "aue $it")
+                        val adapter = ResultsAdapter(
+                            it
+                        ) { num -> goToDetailedResults(num) }
+                        binding.recyclerResults.adapter = adapter
                     }
-                }
+
             }
         }
     }
