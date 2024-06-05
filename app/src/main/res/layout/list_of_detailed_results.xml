@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -10,11 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/archivo_semibold"
         android:text="@string/name_of_exercise"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/blackLine" />
 
     <View
         android:id="@+id/blackLine"
@@ -24,9 +25,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_rdNameOfExercise"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginTop="20dp"
+        />
     <View
         android:id="@+id/blackLine2"
         android:layout_width="match_parent"
@@ -42,13 +42,13 @@
     <View
         android:id="@+id/blackLine3"
         android:layout_width="5dp"
-        android:layout_height="200dp"
+        android:layout_height="0dp"
         android:background="@color/grey"
         app:layout_constraintLeft_toRightOf="@id/tv_rdQuantityOfRepeats"
         app:layout_constraintRight_toLeftOf="@id/tv_rdQuantityOfRepeats2"
         app:layout_constraintTop_toBottomOf="@id/blackLine"
-        app:layout_constraintBottom_toTopOf="@id/blackLine3"
-
+        app:layout_constraintBottom_toBottomOf="@id/tv_rdWeight2"
+        android:layout_marginBottom="-15dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="16dp" />
 
@@ -116,23 +116,6 @@
         app:layout_constraintLeft_toLeftOf="@id/tv_rdNameOfExercise2"
         app:layout_constraintTop_toTopOf="@id/tv_rdQuantityOfSets" />
 
-    <TextView
-        android:id="@+id/tv_rdTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/archivo_semibold"
-        android:text="@string/time"
-        android:visibility="gone"
-        app:layout_constraintLeft_toLeftOf="@id/tv_rdWeight"
-        app:layout_constraintTop_toBottomOf="@id/tv_rdWeight" />
 
-    <TextView
-        android:id="@+id/tv_rdTime2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/archivo_semibold"
-        android:visibility="gone"
-        app:layout_constraintLeft_toLeftOf="@id/tv_rdNameOfExercise2"
-        app:layout_constraintTop_toTopOf="@id/tv_rdTime" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.myapplication2.databinding.ListOfTrainBottomSheetBinding
+import com.example.myapplication2.domain.model.TrainingModel
 
 class TrainBottomSheetAdapter(
     var listOfExercise: List<String>?,
@@ -25,7 +26,7 @@ class TrainBottomSheetAdapter(
 
     override fun onBindViewHolder(holder: TrainBottomSheetViewHolder, position: Int) {
         holder.binding.let {
-            it.tvNameOfExercise.text = listOfExercise?.get(position)
+            it.tvNameOfExercise.text = listOfExercise?.get(position).toString()
             it.tvNameOfExercise.setOnClickListener {
                 changeExercise(position)
             }

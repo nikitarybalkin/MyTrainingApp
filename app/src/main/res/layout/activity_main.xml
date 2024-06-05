@@ -29,6 +29,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:itemBackground="@color/turquoise"
+        app:itemTextColor="@color/black"
+        app:itemRippleColor="@color/black"
         app:layout_behavior="none"
         app:menu="@menu/nav_menu"/>
 

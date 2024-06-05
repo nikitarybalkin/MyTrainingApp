@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".presentation.fragment.CreateTrainFragment">
 
 
@@ -28,6 +29,8 @@
         android:hint="@string/name_of_train"
         android:inputType="text"
         android:text=""
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
         android:gravity="center"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +44,8 @@
         android:ems="10"
         android:inputType="text"
         android:text=""
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
         android:fontFamily="@font/archivo_semibold"
         android:gravity="center"
         android:hint="@string/name_of_exercise"
@@ -55,7 +60,7 @@
         android:layout_height="70dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="50dp"
-        android:backgroundTint="@color/peach"
+        android:backgroundTint="@color/aquamarine"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:fontFamily="@font/archivo_semibold"
@@ -68,7 +73,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/archivo_semibold"
-        android:backgroundTint="@color/peach"
+        android:backgroundTint="@color/yellowGreen"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -37,7 +37,6 @@ class MyAdapter(
         holder.binding.tvNameOfTrainField.setOnClickListener {
             navigationAction(position)
         }
-        Log.d(TAG, "your tr is null")
         holder.binding.bDelete.setOnClickListener {
             delTable(table[position])
         }

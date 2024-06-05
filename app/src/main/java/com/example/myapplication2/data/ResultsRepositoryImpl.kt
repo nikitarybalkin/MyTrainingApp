@@ -1,5 +1,6 @@
 package com.example.myapplication2.data
 
+import android.util.Log
 import com.example.myapplication2.data.dataSource.ResultsDataSource
 import com.example.myapplication2.domain.model.ResultsModel
 import com.example.myapplication2.domain.model.mapToData

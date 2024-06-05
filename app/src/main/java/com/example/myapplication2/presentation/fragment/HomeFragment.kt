@@ -3,6 +3,7 @@ package com.example.myapplication2.presentation.fragment
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,19 +38,19 @@ class HomeFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var id: Int = 0
+        var id: Int? = null
         viewModel.getLastTable()
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.list?.collect {
                 if (it.isNotEmpty()) {
-                    it[0]?.let {
-                        binding.tvHDate2.text = it?.date
-                        binding.tvHNameOfTrain2.text = it?.nameOfTrain
-                        if (it.id != 0) {
-                            id = it.id.dec()
+                    it[0]?.let {resModel ->
+                        binding.tvHDate2.text = resModel?.date
+                        binding.tvHNameOfTrain2.text = resModel?.nameOfTrain
+                        if (resModel.id != 0) {
+                            id = resModel.id - 1
                         }
                         binding.tvHTime2.text =
-                            TimeConverter(requireActivity().applicationContext).convTime(it.time)
+                            TimeConverter(requireActivity().applicationContext).convTime(resModel.time)
 
                     }
                 } else {
@@ -59,6 +60,7 @@ class HomeFragment : Fragment() {
                     binding.line.visibility = View.INVISIBLE
                     binding.line2.visibility = View.INVISIBLE
                     binding.tvHNameOfTrain.visibility = View.INVISIBLE
+                    binding.tvResultOfTrain.text = getString(R.string.empty_table)
                 }
 
 
@@ -66,8 +68,8 @@ class HomeFragment : Fragment() {
         }
         binding.table.setOnClickListener{
             val bundle: Bundle = Bundle()
-            if (id != 0) {
-                bundle.putInt("id", id)
+            if (id != null) {
+                bundle.putInt("id", id!!)
                 findNavController().navigate(R.id.action_homeFragment_to_resultsDetailedFragment, bundle)
             }
 

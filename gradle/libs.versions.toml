@@ -31,4 +31,5 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kapt = { id = "kapt", version.ref = "kapt"}
+safeargs = { id = "androidx.navigation.safeargs.kotlin", version = "2.5.3" }
 

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.fragment.HomeFragment">
 
@@ -27,6 +28,7 @@
         android:layout_height="wrap_content"
         android:text="@string/last_training"
         android:textSize="20dp"
+        android:gravity="center"
         android:fontFamily="@font/alata"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -134,7 +136,7 @@
         android:background="@drawable/table_frame"
         app:layout_constraintTop_toBottomOf="@id/tv_ResultOfTrain"
         android:layout_marginTop="10dp"
-        app:layout_constraintBottom_toBottomOf="@id/tv_hNameOfTrain2"
+        app:layout_constraintBottom_toBottomOf="@id/tv_hTime2"
         android:layout_marginBottom="-20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

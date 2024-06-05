@@ -7,7 +7,7 @@ plugins {
     //kotlin("android.extensions")
     kotlin("kapt") version "1.9.23"
     alias(libs.plugins.ksp)
-
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.myapplication2"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -67,6 +67,7 @@ dependencies {
     annotationProcessor("com.google.dagger:dagger-compiler:$daggerVersion")
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$roomVersion")
+    implementation("com.google.android.material:material:1.12.0")
     implementation ("com.google.dagger:dagger:$daggerVersion")
     implementation ("com.google.dagger:dagger-android-support:$daggerVersion")
     implementation("com.google.dagger:dagger:$daggerVersion")

@@ -22,7 +22,6 @@ class ResultsUseCase @Inject constructor(private val resultsRepositoryImpl: Resu
     }
 
     suspend fun insert(table: ResultsModel) {
-        Log.d("LOL","заинсертило in useCase resultsEntity. table = ${table.exercises}")
         resultsRepositoryImpl.insert(table)
     }
 

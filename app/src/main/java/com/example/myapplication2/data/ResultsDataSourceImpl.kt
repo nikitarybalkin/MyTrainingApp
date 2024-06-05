@@ -31,7 +31,6 @@ class ResultsDataSourceImpl @Inject constructor(private val db: ResultsDao): Res
      * @param table запись, которую необходимо добавить
      */
     override suspend fun insert(table: ResultsEntity) {
-        Log.d("LOL","заинсертило in datasource resultsEntity. table = ${table.exercises}")
         db.insert(table)
     }
 

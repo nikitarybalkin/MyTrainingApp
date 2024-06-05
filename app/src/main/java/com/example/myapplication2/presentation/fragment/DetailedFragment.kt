@@ -50,7 +50,7 @@ class DetailedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerDetailed.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         viewModel.getList()
-        var bundle = arguments?.getInt("aue")
+        var bundle = arguments?.getInt("id")
         var bundle2 = Bundle()
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
 

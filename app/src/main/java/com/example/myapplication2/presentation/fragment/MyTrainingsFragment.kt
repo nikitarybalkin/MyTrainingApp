@@ -76,7 +76,7 @@ class MyTrainingsFragment : Fragment() {
 
     private fun goToDetailed(num: Int) {
         val bundle = Bundle()
-        bundle.putInt("aue", num)
+        bundle.putInt("id", num)
         findNavController().navigate(R.id.action_myTrainingsFragment_to_detailedFragment, bundle)
     }
 

@@ -22,5 +22,10 @@ class ResultsViewModel @Inject constructor(
 
         }
     }
+    fun deleteTable(results: ResultsModel) {
+        viewModelScope.launch {
+            resultsUseCase.delete(results)
+        }
+    }
 
 }

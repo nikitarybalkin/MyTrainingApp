@@ -11,6 +11,7 @@ import com.example.myapplication2.domain.model.ResultsModel
 class ResultsAdapter(
     private val results: List<ResultsModel?>,
     private val goToDetailedResults: (Int) -> Unit,
+    private val deleteResults: (ResultsModel) -> Unit
 
     ): RecyclerView.Adapter<ResultsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultsViewHolder {
@@ -27,7 +28,9 @@ class ResultsAdapter(
         holder.binding.RView.setOnClickListener{
             goToDetailedResults(position)
         }
-
+        holder.binding.bDelete.setOnClickListener {
+            deleteResults(results[position]!!)
+        }
     }
 }
 private fun convTime(time: String): String {

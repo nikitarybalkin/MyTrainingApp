@@ -8,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication2.R
 import com.example.myapplication2.databinding.FragmentTrainBinding
@@ -20,9 +23,14 @@ import com.example.myapplication2.data.ResultsEntity
 import com.example.myapplication2.data.TrainingEntity
 import com.example.myapplication2.domain.model.ResultsModel
 import com.example.myapplication2.domain.model.TrainingModel
+import com.example.myapplication2.presentation.adapter.TrainBottomSheetAdapter
 import com.example.myapplication2.presentation.viewModel.TrainViewModel
 import com.example.myapplication2.presentation.viewModel.ViewModelFactory
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.runBlocking
 import java.util.Calendar
 import javax.inject.Inject
 
@@ -37,6 +45,7 @@ class TrainFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[TrainViewModel::class.java]
     }
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var binding: FragmentTrainBinding
     var counter: Int = 0
     var quantityOfSets = 0
@@ -65,118 +74,88 @@ class TrainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.startTimer()
         viewModel.getAll()
-        bundle = arguments?.getInt("NameOfList")
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            viewModel.resList.collect {
-                binding.tvNameOfExercise.text = "Выберете упражнение"
-                binding.tvNameOfTrain.text = it[bundle!!].nameOfTrainingEntity
-                resList1 = it
-                Log.d(TAG, "reslist1 = $resList1")
+        val bottomSheetFragment: ConstraintLayout = binding.persistentBottomSheet
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheetFragment)
+        if (arguments != null) {
+            viewModel.startTimer()
+            bundle = arguments?.getInt("NameOfList")
+            viewModel.numbOfList = bundle
+            Log.d("LOL", "arguments != null")
+            Log.d("LOL", "arguments = ${arguments}")
+            viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+                viewModel.resList.collect {
+                    Log.d("LOL", "reslist произошёл")
+                    binding.tvNameOfExercise.text = getString(R.string.choose_excercise)
+                    binding.tvNameOfTrain.text = it[bundle!!].nameOfTrainingEntity
+                    resList1 = it
+                }
+            }
+        } else {
+            bundle = viewModel.numbOfList
+            Log.d("LOL", "arguments = null")
+            viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+                viewModel.resList.collect {
+                    binding.tvNameOfExercise.text = getString(R.string.choose_excercise)
+                    binding.tvNameOfTrain.text = it[bundle!!].nameOfTrainingEntity
+                    resList1 = it
+                }
             }
         }
 
         binding.tvNameOfExercise.setOnClickListener {
+            if (quantityOfSets != 0) {
+                nextExercise()
+            }
             var bundleToSheet = Bundle()
-            bundleToSheet.putStringArray(
-                "listOfExercises",
-                resList1[bundle!!].exercises?.toTypedArray()
+            //viewModel.resListValue = resList1[bundle!!].exercises!!
+            val adapter = TrainBottomSheetAdapter(
+                viewModel.resListValue[bundle!!].exercises,
+                { index1 -> setIndex(index1) }
             )
-            Log.d("LOL", "бандл готов = ${resList1[bundle!!].exercises?.toTypedArray()}")
-            findNavController().navigate(
-                R.id.action_trainFragment_to_trainBottomSheetFragment,
-                bundleToSheet
-            )
+            binding.rvTrainBottomSheet.adapter = adapter
+            if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            } else {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
         }
         viewModel.indexOfExercise.observe(viewLifecycleOwner) {
-            Log.d("LOL", "заколлектило")
             if (it != null) {
                 indexOfExercise1 = it
-                Log.d("LOL", "setIndex works")
                 setExercise()
-            }
-        }
-        binding.tvNameOfTrain.setOnClickListener {
-            viewModel.insert(
-                ResultsModel(
-                    exercises = listOfExercises,
-                    countOfSets = listOf("2"),
-                    countInSet = listOf("10,11"),
-                    weights = listOf("10,11"),
-                    date = getDate(),
-                    nameOfTrain = resList1[bundle!!].nameOfTrainingEntity,
-                    time = viewModel.time.toString()
-                )
-            )
-            Log.d("LOL", "Рабочий инсерт = exercise = ${listOfExercises}, countOfSets = ${listOf("2")}, countInSet = ${listOf("10,11")}, weights = ${listOf("10,11")}")
-        }
-
-        binding.bNExercise.setOnClickListener {
-            if (counter >= resList1[bundle!!].exercises!!.lastIndex) {
-                listOfQuantityOfExes.add(listOfQuantityInOne.toString().replace(",", " |").replace(",", " |").replace("[","").replace("]",""))
-                listOfWeight.add(listOfWeightInOne.toString().replace(",", " |").replace(",", " |").replace("[","").replace("]",""))
-                listOfQuantityOfSets.add(quantityOfSets.toString())
-                viewModel.stopTimer()
-                var resModel = ResultsModel(
-                    exercises = listOfExercises.toList(),
-                    countOfSets = listOfQuantityOfSets.toList(),
-                    countInSet = listOfQuantityOfExes.toList(),
-                    weights = listOfWeight.toList(),
-                    date = getDate(),
-                    nameOfTrain = resList1[bundle!!].nameOfTrainingEntity,
-                    time = viewModel.time.toString()
-                )
-                Log.d(
-                    "LOL",
-                    "lExercises = ${listOfExercises.toList()}/countOfSets = ${listOfQuantityOfSets.toList()}, listOfQuantityOfExes = ${listOfQuantityOfExes.toList()}, listOfWeight = ${listOfWeight.toList()}"
-                )
-                viewModel.insert(
-                    resModel
-                )
-                Log.d(
-                    TAG,
-                    "ResultsEntity = exercises = ${listOfExercises}, countOfSets = $quantityOfSets, countInSet = $listOfQuantityOfExes, weights = $listOfWeight"
-                )
-                Toast.makeText(
-                    context,
-                    context?.getString(R.string.training_is_over),
-                    Toast.LENGTH_SHORT
-                ).show()
-                //findNavController().navigate(R.id.action_trainFragment_to_startFragment)
-            } else {
-                //listOfIndexes.add(indexOfExercise1!!)
-                listOfQuantityOfSets.add(quantityOfSets.toString())
-                quantityOfSets = 0
-                counter++
-                binding.tvNameOfExercise.text = resList1[bundle!!].exercises!![counter]
-                binding.tvNameOfTrain.text = resList1[bundle!!].nameOfTrainingEntity
-                listOfQuantityOfExes.add(listOfQuantityInOne.toString().replace(",", " |").replace("[","").replace("]",""))
-                listOfWeight.add(listOfWeightInOne.toString().replace(",", " |").replace(",", " |").replace("[","").replace("]",""))
-                binding.tvNumbOfSet.text = context?.getString(R.string.its_first_set)
-                listOfQuantityInOne.clear()
-                listOfWeightInOne.clear()
+                binding.tvQuantityOfRepeats.visibility = View.VISIBLE
+                binding.tvWeight.visibility = View.VISIBLE
+                binding.etQuantityOfRepeats.visibility = View.VISIBLE
+                binding.etWeight.visibility = View.VISIBLE
+                binding.bFinish.visibility = View.VISIBLE
+                binding.bNSet.visibility = View.VISIBLE
             }
         }
 
+        binding.bFinish.setOnClickListener {
+                finishTraining()
+        }
+    }
+
+    private fun setIndex(index: Int) {
+        viewModel.indexOfExercise.value = index
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     private fun setExercise() {
-        listOfExercises.add(resList1[bundle!!].exercises!![indexOfExercise1!!])
-        binding.tvNameOfExercise.text = resList1[bundle!!].exercises!![indexOfExercise1!!]
+        listOfExercises
+            .add(
+                viewModel.resListValue[viewModel.numbOfList!!]
+                    .exercises!![
+                    indexOfExercise1!!]
+            )
+        binding.tvNameOfExercise.text = viewModel.resListValue[bundle!!].exercises!![indexOfExercise1!!]
         binding.bNSet.setOnClickListener {
             if (binding.etQuantityOfRepeats.text.isNotEmpty() && binding.etWeight.text.isNotEmpty()) {
                 quantityOfSets++
                 listOfQuantityInOne.add(binding.etQuantityOfRepeats.text.toString())
-                Log.d(TAG, "listOfQuantityInOne = $listOfQuantityInOne")
-                Log.d(
-                    TAG,
-                    "toStr = ${binding.etQuantityOfRepeats.text.toString()} и replace = ${
-                        binding.etQuantityOfRepeats.text.toString().replace(",", " |")
-                    }"
-                )
                 listOfWeightInOne.add(binding.etWeight.text.toString().replace(",", " |"))
-                Log.d(TAG, "listOfWeightInOne = $listOfWeightInOne")
                 binding.tvNumbOfSet.text = "It's your ${quantityOfSets + 1} set"
                 binding.etQuantityOfRepeats.text.clear()
                 binding.etWeight.text.clear()
@@ -185,7 +164,59 @@ class TrainFragment : Fragment() {
                 context?.getString(R.string.some_fields_empty),
                 Toast.LENGTH_SHORT
             ).show()
+
         }
+    }
+
+    private fun nextExercise() {
+        listOfQuantityOfSets.add(quantityOfSets.toString())
+        quantityOfSets = 0
+        counter++
+        viewModel.counter.value = counter
+        binding.tvNameOfExercise.text = resList1[bundle!!].exercises!![counter]
+        binding.tvNameOfTrain.text = resList1[bundle!!].nameOfTrainingEntity
+        listOfQuantityOfExes.add(
+            listOfQuantityInOne.toString().replace(",", " |").replace("[", "").replace("]", "")
+        )
+        listOfWeight.add(
+            listOfWeightInOne.toString().replace(",", " |").replace(",", " |").replace("[", "")
+                .replace("]", "")
+        )
+        binding.tvNumbOfSet.text = context?.getString(R.string.its_first_set)
+        listOfQuantityInOne.clear()
+        listOfWeightInOne.clear()
+    }
+
+    private fun finishTraining() {
+        listOfQuantityOfExes.add(
+            listOfQuantityInOne.toString().replace(",", " |").replace(",", " |").replace("[", "")
+                .replace("]", "")
+        )
+        listOfWeight.add(
+            listOfWeightInOne.toString().replace(",", " |").replace(",", " |").replace("[", "")
+                .replace("]", "")
+        )
+        listOfQuantityOfSets.add(quantityOfSets.toString())
+        viewModel.stopTimer()
+        var resModel = ResultsModel(
+            exercises = listOfExercises.toList(),
+            countOfSets = listOfQuantityOfSets.toList(),
+            countInSet = listOfQuantityOfExes.toList(),
+            weights = listOfWeight.toList(),
+            date = getDate(),
+            nameOfTrain = resList1[bundle!!].nameOfTrainingEntity,
+            time = viewModel.time.toString()
+        )
+        viewModel.insert(
+            resModel
+        )
+        Toast.makeText(
+            context,
+            context?.getString(R.string.training_is_over),
+            Toast.LENGTH_SHORT
+        ).show()
+        viewModel.indexOfExercise = MutableLiveData(null)
+        findNavController().navigate(R.id.action_trainFragment_to_homeFragment)
     }
 
 

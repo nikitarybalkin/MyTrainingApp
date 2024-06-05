@@ -30,12 +30,6 @@ class ResultsDetailedAdapter(
             convWithoutBrackets(listOfExes.countInSet[position])
         holder.binding.tvRdQuantityOfSets2.text = listOfExes.countOfSets[position]
         holder.binding.tvRdWeight2.text = convWithoutBrackets(listOfExes.weights[position])
-        //holder.binding.tvRdTime2.text = convTime(listOfExes.time)
-        if (position == 0) {
-            holder.binding.tvRdTime.visibility = View.VISIBLE
-            holder.binding.tvRdTime2.visibility = View.VISIBLE
-            holder.binding.tvRdTime2.text = convTime(listOfExes.time)
-        }
     }
 
     private fun convWithoutBrackets(t: String): String {
@@ -43,14 +37,7 @@ class ResultsDetailedAdapter(
     }
 
     private fun convTime(time: String): String {
-        var t = time.toInt()
-        /*if (t >= 60) {
-            return "${t/60} мин. ${t%60} сек."
-        } else return "$t сек."
-
-         */
-
-
+        val t = time.toInt()
         var res: String = ""
         when (t) {
             in 1..59 -> res = "$t сек."
@@ -80,7 +67,6 @@ class ResultsDetailedAdapter(
 
     }
 }
-
 
 class ResultsDetailedViewHolder(val binding: ListOfDetailedResultsBinding) :
     ViewHolder(binding.root)

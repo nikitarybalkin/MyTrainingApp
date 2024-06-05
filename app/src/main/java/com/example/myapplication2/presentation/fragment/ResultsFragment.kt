@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication2.R
 import com.example.myapplication2.databinding.FragmentResultsBinding
 import com.example.myapplication2.di.App
+import com.example.myapplication2.domain.model.ResultsModel
 import com.example.myapplication2.presentation.adapter.ResultsAdapter
 import com.example.myapplication2.presentation.viewModel.ResultsViewModel
 import com.example.myapplication2.presentation.viewModel.ViewModelFactory
@@ -50,19 +51,19 @@ class ResultsFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
 
             viewModel.listOfExers.collect {
-                //Log.d("LOL", "resModel = ${it[0]?.weights}")
                     if (it.isEmpty()) {
+                        binding.recyclerResults.adapter = null
                         Toast.makeText(
                             requireContext(),
                             context?.getString(R.string.toast_of_result),
                             Toast.LENGTH_SHORT
                         ).show()
-                        Log.d(TAG, "here is null")
                     } else {
-                        Log.d(TAG, "aue $it")
                         val adapter = ResultsAdapter(
-                            it
-                        ) { num -> goToDetailedResults(num) }
+                            results = it,
+                            goToDetailedResults = { num -> goToDetailedResults(num) },
+                            deleteResults = {resultsModel -> deleteResults(resultsModel) }
+                        )
                         binding.recyclerResults.adapter = adapter
                     }
 
@@ -74,5 +75,8 @@ class ResultsFragment : Fragment() {
         val bundle: Bundle = Bundle()
         bundle.putInt("id", id)
         findNavController().navigate(R.id.action_resultsFragment_to_resultsDetailedFragment, bundle)
+    }
+    private fun deleteResults(results: ResultsModel) {
+        viewModel.deleteTable(results)
     }
 }

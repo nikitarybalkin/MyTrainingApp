@@ -20,6 +20,11 @@ class HomeViewModel @Inject constructor(
             list = resultsUseCase.getLastTR()
         }
     }
+    fun deleteAll() {
+        viewModelScope.launch {
+            resultsUseCase.deleteAll()
+        }
+    }
 
 
 

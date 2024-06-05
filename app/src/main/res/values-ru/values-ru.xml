@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application2</string>
+    <string name="app_name">Training note by Rybalkin</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="creation_of_training">Создание тренировки</string>
     <string name="name_of_train">Название тренировки</string>
@@ -31,6 +31,10 @@
     <string name="hour">час.</string>
     <string name="you_wrote">Вы записали</string>
     <string name="exercises">упражнение/ия.</string>
-    <string name="count_of_exercise">Номер подхода.</string>
+    <string name="count_of_exercise">Номер подхода</string>
+    <string name="finish_and_save_training">Закончить и сохранить тренировку</string>
+    <string name="delete">Удалить</string>
+    <string name="choose_excercise">Чтобы выбрать упражнение нажмите здесь</string>
+    <string name="empty_table">Здесь будет показана твоя последняя тренировка</string>
 
 </resources>

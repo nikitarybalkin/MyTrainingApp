@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.myapplication2.R
 import com.example.myapplication2.databinding.FragmentTrainBottomSheetBinding
 import com.example.myapplication2.di.App
@@ -23,7 +24,7 @@ import javax.inject.Inject
 class TrainBottomSheetFragment : BottomSheetDialogFragment() {
 
     companion object {
-        fun newInstance() = TrainBottomSheetFragment()
+        const val TAG = "TrainBottomSheetFragment"
     }
 
     @Inject
@@ -33,6 +34,7 @@ class TrainBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private lateinit var binding: FragmentTrainBottomSheetBinding
+    private var destroyed: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,21 +50,16 @@ class TrainBottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Log.d("LOL", "до шита долшло")
-        val bundle = arguments?.getStringArray("listOfExercises")
-        //Log.d("LOL", "бандл получен = ${bundle?.toList()}")
-        val adapter = TrainBottomSheetAdapter(
-            bundle?.toList(),
-            {index1 -> setIndex(index1)}
-        )
-        Log.d("LOL", "vm in bottom ${viewModel}")
-        binding.rvTrainBottomSheet.adapter = adapter
-
-
+        val bundle = viewModel.resListValue
+        viewModel.counter.observe(viewLifecycleOwner) {
+            if (it + 1 == bundle!!.size) {
+                destroyed = true
+                onDestroyView()
+            }
+        }
     }
     fun setIndex(index: Int) {
         viewModel.indexOfExercise.value = index
-        Log.d("LOL", "setedIndex = ${viewModel.indexOfExercise.value}")
     }
 
 }
